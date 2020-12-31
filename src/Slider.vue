@@ -7,6 +7,7 @@
   import useStyle from './composables/useStyle'
   import useTooltip from './composables/useTooltip'
   import useSlider from './composables/useSlider'
+  import useDisable from './composables/useDisable'
 
   export default {
     name: 'Slider',
@@ -96,10 +97,15 @@
         tooltipsMerge: tooltip.tooltipsMerge,
       })
 
+      const disable = useDisable(props, context, {
+        slider: slider.slider,
+      })
+
       return {
         ...style,
         ...tooltip,
         ...slider,
+        ...disable,
       }
     }
   }
@@ -293,6 +299,11 @@
   [disabled].slider-handle,
   [disabled] .slider-handle {
     cursor: not-allowed;
+  }
+
+  [disabled] .slider-tooltip {
+    background: #B8B8B8;
+    border-color: #B8B8B8;
   }
 
   .slider-tooltip {
