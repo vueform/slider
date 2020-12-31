@@ -3,11 +3,10 @@
 </template>
 
 <script>
-  import { ref, computed, toRefs, watch, onMounted, onUnmounted } from 'composition-api'
-  import noUiSlider from 'nouislider'
-  import wNumb from 'wnumb'
-  import isNullish from './utils/isNullish'
-  import arraysEqual from './utils/arraysEqual'
+  import useValue from './composables/useValue'
+  import useStyle from './composables/useStyle'
+  import useTooltip from './composables/useTooltip'
+  import useSlider from './composables/useSlider'
 
   export default {
     name: 'Slider',
@@ -80,253 +79,33 @@
       format: {
         type: Object,
         required: false,
-      }
+      },
     },
     setup(props, context)
     {
-      const { value: baseValue, modelValue, options, orientation, direction,
-              tooltips, step, min, max, mergeTooltips, height, format } = toRefs(props)
+      // no export
+      const value = useValue(props, context)
 
-      // ================ DATA ================
+      const style = useStyle(props, context)
+      const tooltip = useTooltip(props, context)
 
-      const slider = ref(null)
-
-      const slider$ = ref(null)
-
-      const value = context.expose !== undefined ? modelValue : baseValue
-
-      const inited = ref(false)
-
-      // ============== COMPUTED ==============
-
-      const tooltipFormat = computed(() => {
-        if (!format || !format.value) {
-          return { to: v => v, from: v => v }
-        }
-
-        if (format.value.display !== undefined || format.value.value !== undefined) {
-          if (format.value.display === undefined) {
-            throw new Error('Slider format must have `display` property')
-          }
-
-          if (format.value.value === undefined) {
-            throw new Error('Slider format must have `value` property')
-          }
-
-          return { to: format.value.display, from: format.value.value }
-        }
-
-        return wNumb(Object.assign({}, format.value))
+      const slider = useSlider(props, context, {
+        value: value.value,
+        initialValue: value.initialValue,
+        tooltipFormat: tooltip.tooltipFormat,
+        tooltipsMerge: tooltip.tooltipsMerge,
       })
-
-      const defaultOptions = computed(() => {
-        let defaultOptions = {
-          cssPrefix: 'slider-',
-          orientation: orientation.value,
-          tooltips: tooltips.value,
-          format: tooltipFormat.value,
-          connect: 'lower',
-          start: isNullish(value.value) ? min.value : value.value,
-          step: step.value,
-          range: {
-            'min': min.value,
-            'max': max.value
-          }
-        }
-
-        if (Array.isArray(value.value)) {
-          defaultOptions.connect = true
-        }
-
-        return defaultOptions
-      })
-
-      const isRange = computed(() => {
-        return Array.isArray(value.value)
-      })
-
-      const style = computed(() => {
-        return orientation.value == 'vertical'
-          ? { height: height.value }
-          : []
-      })
-
-      // =============== METHODS ==============
-
-      const update = (val) => {
-        slider$.value.set(val)
-      }
-
-      const updateValue = (val) => {
-        context.emit('input', val)
-        context.emit('update:modelValue', val)
-        context.emit('update', val)
-      }
-
-      const getSliderValue = () => {
-        return slider$.value.get()
-      }
-
-      const tooltipsMerge = (slider, threshold, separator) => {
-        var textIsRtl = getComputedStyle(slider).direction === 'rtl'
-        var isRtl = slider.noUiSlider.options.direction === 'rtl'
-        var isVertical = slider.noUiSlider.options.orientation === 'vertical'
-        var tooltips = slider.noUiSlider.getTooltips()
-        var origins = slider.noUiSlider.getOrigins()
-
-        // Move tooltips into the origin element. The default stylesheet handles this.
-        tooltips.forEach(function (tooltip, index) {
-          if (tooltip) {
-            origins[index].appendChild(tooltip)
-          }
-        })
-
-        slider.noUiSlider.on('update', function (values, handle, unencoded, tap, positions) {
-          var pools = [[]]
-          var poolPositions = [[]]
-          var poolValues = [[]]
-          var atPool = 0
-
-          // Assign the first tooltip to the first pool, if the tooltip is configured
-          if (tooltips[0]) {
-            pools[0][0] = 0
-            poolPositions[0][0] = positions[0]
-            poolValues[0][0] = values[0]
-          }
-
-          for (var i = 1; i < positions.length; i++) {
-            if (!tooltips[i] || (positions[i] - positions[i - 1]) > threshold) {
-              atPool++
-              pools[atPool] = []
-              poolValues[atPool] = []
-              poolPositions[atPool] = []
-            }
-
-            if (tooltips[i]) {
-              pools[atPool].push(i)
-              poolValues[atPool].push(values[i])
-              poolPositions[atPool].push(positions[i])
-            }
-          }
-
-          pools.forEach(function (pool, poolIndex) {
-            var handlesInPool = pool.length
-
-            for (var j = 0; j < handlesInPool; j++) {
-              var handleNumber = pool[j]
-
-              if (j === handlesInPool - 1) {
-                var offset = 0
-
-                poolPositions[poolIndex].forEach(function (value) {
-                    offset += 1000 - 10 * value
-                })
-
-                var direction = isVertical ? 'bottom' : 'right'
-                var last = isRtl ? 0 : handlesInPool - 1
-                var lastOffset = 1000 - 10 * poolPositions[poolIndex][last]
-                offset = (textIsRtl && !isVertical ? 100 : 0) + (offset / handlesInPool) - lastOffset
-
-                // Center this tooltip over the affected handles
-                tooltips[handleNumber].innerHTML = poolValues[poolIndex].join(separator)
-                tooltips[handleNumber].style.display = 'block'
-                tooltips[handleNumber].style[direction] = offset + '%'
-              } else {
-                // Hide this tooltip
-                tooltips[handleNumber].style.display = 'none'
-              }
-            }
-          })
-        })
-      }
-
-      const initSlider = () => {
-        slider$.value = noUiSlider.create(slider.value, Object.assign({}, defaultOptions.value, options.value))
-
-        if (tooltips.value && isRange.value && mergeTooltips.value > 0) {
-          tooltipsMerge(slider.value, mergeTooltips.value, ' - ')
-        }
-
-        slider$.value.on('change', (val) => {
-          if (!inited.value) {
-            return
-          }
-
-          context.emit('change', !isRange.value ? val[0] : val)
-        })
-
-        slider$.value.on('update', (val) => {
-          if (!inited.value) {
-            return
-          }
-
-          updateValue(!isRange.value ? val[0] : val)
-        })
-
-        inited.value = true
-      }
-
-      const destroySlider = () => {
-        slider$.value.off()
-        slider$.value.destroy()
-        slider$.value = null
-      }
-
-      const reinitSlider = () => {
-        inited.value = false
-        destroySlider()
-        initSlider()
-      }
-
-      // ================ HOOKS ===============
-
-      if (isNullish(value.value)) {
-        throw new Error('Slider v-model must not be a Number or Array')
-      }
-
-      if (isRange.value && value.value.length == 0) {
-        throw new Error('Slider v-model must not be an empty array')
-      }
-
-      onMounted(initSlider)
-      onUnmounted(destroySlider)
-
-      // ============== WATCHERS ==============
-
-      watch(isRange, reinitSlider, { immediate: false })
-      watch(min, reinitSlider, { immediate: false })
-      watch(max, reinitSlider, { immediate: false })
-      watch(step, reinitSlider, { immediate: false })
-      watch(orientation, reinitSlider, { immediate: false })
-      watch(direction, reinitSlider, { immediate: false })
-      watch(tooltips, reinitSlider, { immediate: false })
-      watch(format, reinitSlider, { immediate: false })
-      watch(options, reinitSlider, { immediate: false, deep: true })
-      watch(mergeTooltips, reinitSlider, { immediate: false })
-      watch(format, reinitSlider, { immediate: false, deep: true })
-
-      watch(value, (newValue) => {
-        if ((isRange.value && !arraysEqual(newValue, getSliderValue())) || (!isRange.value && newValue != getSliderValue())) {
-          update(newValue)
-        }
-      }, { deep: true })
 
       return {
-        slider,
-        slider$,
-        update,
-        isRange,
-        style,
+        ...style,
+        ...tooltip,
+        ...slider,
       }
     }
   }
 </script>
 
 <style lang="scss">
-  .slider-target {
-    margin-left: 100px;
-  }
-
   /* Functional styling;
   * These styles are required for noUiSlider to function.
   * You don't need to change these rules to apply your design.
