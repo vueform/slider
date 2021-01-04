@@ -6,7 +6,8 @@ export default function useValue (props, context, dependencies)
   const { value: baseValue, modelValue } = toRefs(props)
 
   // ================ DATA ================
-
+  
+  /* istanbul ignore next */
   const value = context.expose !== undefined ? modelValue : baseValue
 
   const initialValue = ref(value.value)

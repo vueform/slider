@@ -95,7 +95,7 @@ describe('useTooltip', () => {
     })
   })
 
-  describe('tooltipsFormat', () => {
+  describe('tooltipsMerge', () => {
     it('should merge tooltips with default format', async () => {
       const slider = createSlider({
         value: [0, 1],

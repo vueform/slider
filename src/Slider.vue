@@ -9,20 +9,29 @@
   import useSlider from './composables/useSlider'
   import useDisable from './composables/useDisable'
 
+  /* istanbul ignore next */
+  const valueProps = {
+    value: {
+      validator: function(p) {
+        return p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false
+      },
+      required: false,
+    },
+    modelValue: {
+      validator: function(p) {
+        return p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false
+      },
+      required: false,
+    },
+  }
+
   export default {
     name: 'Slider',
     emits: [
       'input', 'update:modelValue', 'update', 'change',
     ],
     props: {
-      value: {
-        validator: p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false,
-        required: false,
-      },
-      modelValue: {
-        validator: p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false,
-        required: false,
-      },
+      ...valueProps,
       id: {
         type: [String, Number],
         required: false,

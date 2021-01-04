@@ -89,10 +89,6 @@ export default function useSlider (props, context, dependencies)
     }
 
     slider$.value.on('set', (val) => {
-      if (!inited.value) {
-        return
-      }
-
       context.emit('change', getSliderValue())
     })
 

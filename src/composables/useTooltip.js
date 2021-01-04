@@ -18,7 +18,7 @@ export default function useTooltip (props, context, dependencies)
     }
 
     if (typeof format.value == 'function') {
-      return { to: format.value, from: v => v }
+      return { to: format.value }
     }
 
     return wNumb(Object.assign({}, format.value))
@@ -29,7 +29,8 @@ export default function useTooltip (props, context, dependencies)
   })
 
   // =============== METHODS ==============
-
+  
+  /* istanbul ignore next */
   const tooltipsMerge = (slider, threshold, separator) => {
     var textIsRtl = getComputedStyle(slider).direction === 'rtl'
     var isRtl = slider.noUiSlider.options.direction === 'rtl'
