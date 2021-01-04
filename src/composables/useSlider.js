@@ -25,10 +25,12 @@ export default function useSlider (props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  // no export
   const defaultOptions = computed(() => {
     let defaultOptions = {
       cssPrefix: 'slider-',
       orientation: orientation.value,
+      direction: direction.value,
       tooltips: tooltips.value,
       format: tooltipFormat.value,
       connect: 'lower',
@@ -80,11 +82,11 @@ export default function useSlider (props, context, dependencies)
   const init = () => {
     slider$.value = noUiSlider.create(slider.value, Object.assign({}, defaultOptions.value, options.value))
 
-    if (tooltips.value && isRange.value && mergeTooltips.value > 0) {
-      tooltipsMerge(slider.value, Math.round(mergeTooltips.value / step.value), ' - ')
+    if (tooltips.value && isRange.value && mergeTooltips.value >= 0) {
+      tooltipsMerge(slider.value, mergeTooltips.value, ' - ')
     }
 
-    slider$.value.on('change', (val) => {
+    slider$.value.on('set', (val) => {
       if (!inited.value) {
         return
       }
@@ -109,7 +111,7 @@ export default function useSlider (props, context, dependencies)
     slider$.value = null
   }
 
-  const reinit = () => {
+  const refresh = () => {
     inited.value = false
     destroy()
     init()
@@ -122,19 +124,23 @@ export default function useSlider (props, context, dependencies)
 
   // ============== WATCHERS ==============
 
-  watch(isRange, reinit, { immediate: false })
-  watch(min, reinit, { immediate: false })
-  watch(max, reinit, { immediate: false })
-  watch(step, reinit, { immediate: false })
-  watch(orientation, reinit, { immediate: false })
-  watch(direction, reinit, { immediate: false })
-  watch(tooltips, reinit, { immediate: false })
-  watch(format, reinit, { immediate: false })
-  watch(options, reinit, { immediate: false, deep: true })
-  watch(mergeTooltips, reinit, { immediate: false })
-  watch(format, reinit, { immediate: false, deep: true })
+  watch(isRange, refresh, { immediate: false })
+  watch(min, refresh, { immediate: false })
+  watch(max, refresh, { immediate: false })
+  watch(step, refresh, { immediate: false })
+  watch(orientation, refresh, { immediate: false })
+  watch(direction, refresh, { immediate: false })
+  watch(tooltips, refresh, { immediate: false })
+  watch(format, refresh, { immediate: false, deep: true })
+  watch(mergeTooltips, refresh, { immediate: false })
+  watch(options, refresh, { immediate: false, deep: true })
 
   watch(value, (newValue) => {
+    if (isNullish(newValue)) {
+      update(min.value)
+      return
+    }
+
     if ((isRange.value && !arraysEqual(newValue, getSliderValue())) || (!isRange.value && newValue != getSliderValue())) {
       update(newValue)
     }
@@ -146,7 +152,8 @@ export default function useSlider (props, context, dependencies)
     isRange,
     init,
     destroy,
-    reinit,
+    refresh,
+    update,
     reset,
   }
 }

@@ -16,11 +16,11 @@
     ],
     props: {
       value: {
-        type: [Number, Array],
+        validator: p => ['string', 'number'].indexOf(typeof p) !== -1 || p instanceof Array || p === null || p === undefined || p === false,
         required: false,
       },
       modelValue: {
-        type: [Number, Array],
+        validator: p => ['string', 'number'].indexOf(typeof p) !== -1 || p instanceof Array || p === null || p === undefined || p === false,
         required: false,
       },
       id: {
@@ -66,7 +66,7 @@
       mergeTooltips: {
         type: Number,
         required: false,
-        default: 0
+        default: -1
       },
       height: {
         type: String,

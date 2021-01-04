@@ -34,12 +34,25 @@ export const createSlider = (props = {}, options = {}) => {
     }
   }, config)
 
+  if (options.returnRoot) {
+    return wrapper
+  }
+
   return wrapper.findAllComponents({ name: 'Slider' }).at(0)
 }
 
 export const destroy = (wrapper) => {
   wrapper.destroy()
 } 
+
+export const findAllComponents = (parent, query) => {
+  let res = parent.findAllComponents(query)
+
+  return {
+    at: (i) => { return res.at(i) },
+    length: res.length,
+  }
+}
 
 export const findAll = (parent, query) => {
   let res = parent.findAll(query)
@@ -52,4 +65,8 @@ export const findAll = (parent, query) => {
 
 export const getValue = (slider) => {
   return slider.vm.value
+}
+
+export const setProp = (wrapper, object, prop, value) => {
+  wrapper.vm.$set(object, prop, value)
 }
