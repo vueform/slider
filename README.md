@@ -58,7 +58,7 @@
 
 ## Demo 
 
-Check out our [demo](https://jsfiddle.net/wLxfv2p5/).
+Check out our [demo](https://jsfiddle.net/u6ty74wz/10/).
 
 ## Installation
 
@@ -155,7 +155,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 </script>
 ```
 
-[JSFiddle - Example #1](https://jsfiddle.net/wLxfv2p5/)
+[JSFiddle - Example #1](https://jsfiddle.net/u6ty74wz/10/)
 
 ### Multiple slider
 
@@ -178,7 +178,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 </script>
 ```
 
-[JSFiddle - Example #2](https://jsfiddle.net/wLxfv2p5/)
+[JSFiddle - Example #2](https://jsfiddle.net/u6ty74wz/10/)
 
 ### Tooltip formatting
 
@@ -205,7 +205,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 </script>
 ```
 
-[JSFiddle - Example #3](https://jsfiddle.net/wLxfv2p5/)
+[JSFiddle - Example #3](https://jsfiddle.net/u6ty74wz/10/)
 
 ### Tooltip merging
 
@@ -235,7 +235,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 </script>
 ```
 
-[JSFiddle - Example #4](https://jsfiddle.net/wLxfv2p5/)
+[JSFiddle - Example #4](https://jsfiddle.net/u6ty74wz/10/)
 
 ### Vertical slider
 
@@ -253,13 +253,14 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
     components: { Slider },
     data: () => ({
       value: 50,
-      orientation: 'vertical'
+      orientation: 'vertical',
+      direction: 'rtl'
     })
   }
 </script>
 ```
 
-[JSFiddle - Example #5](https://jsfiddle.net/wLxfv2p5/)
+[JSFiddle - Example #5](https://jsfiddle.net/u6ty74wz/10/)
 
 ## About Vueform
 
