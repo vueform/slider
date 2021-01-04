@@ -3,28 +3,29 @@ import wNumb from 'wnumb'
 
 export default function useTooltip (props, context, dependencies)
 {
-  const { format } = toRefs(props)
+  const { format, step } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const value = dependencies.value
 
   // ============== COMPUTED ==============
 
+  // no export
   const tooltipFormat = computed(() => {
     if (!format || !format.value) {
-      return { to: v => v, from: v => v }
+      return wNumb({ decimals: step.value >= 0 ? 0 : 2 })
     }
 
-    if (format.value.display !== undefined || format.value.value !== undefined) {
-      if (format.value.display === undefined) {
-        throw new Error('Slider format must have `display` property')
-      }
-
-      if (format.value.value === undefined) {
-        throw new Error('Slider format must have `value` property')
-      }
-
-      return { to: format.value.display, from: format.value.value }
+    if (typeof format.value == 'function') {
+      return { to: format.value, from: v => v }
     }
 
     return wNumb(Object.assign({}, format.value))
+  })
+
+  const tooltipsFormat = computed(() => {
+    return Array.isArray(value.value) ? value.value.map(v => tooltipFormat.value) : tooltipFormat.value
   })
 
   // =============== METHODS ==============
@@ -53,7 +54,7 @@ export default function useTooltip (props, context, dependencies)
       if (tooltips[0]) {
         pools[0][0] = 0
         poolPositions[0][0] = positions[0]
-        poolValues[0][0] = values[0]
+        poolValues[0][0] = tooltipFormat.value.to(parseFloat(values[0]))
       }
 
       for (var i = 1; i < positions.length; i++) {
@@ -66,7 +67,7 @@ export default function useTooltip (props, context, dependencies)
 
         if (tooltips[i]) {
           pools[atPool].push(i)
-          poolValues[atPool].push(values[i])
+          poolValues[atPool].push(tooltipFormat.value.to(parseFloat(values[i])))
           poolPositions[atPool].push(positions[i])
         }
       }
@@ -103,7 +104,7 @@ export default function useTooltip (props, context, dependencies)
   }
 
   return {
-    tooltipFormat,
+    tooltipsFormat,
     tooltipsMerge,
   }
 }

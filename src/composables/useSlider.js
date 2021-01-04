@@ -5,13 +5,13 @@ import arraysEqual from './../utils/arraysEqual'
 
 export default function useSlider (props, context, dependencies)
 {
-  const { options, orientation, direction, tooltips, step, min, max, mergeTooltips, format } = toRefs(props)
+  const { options, orientation, direction, tooltips, step, min, max, merge, format } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
   const value = dependencies.value
   const initialValue = dependencies.initialValue
-  const tooltipFormat = dependencies.tooltipFormat
+  const tooltipsFormat = dependencies.tooltipsFormat
   const tooltipsMerge = dependencies.tooltipsMerge
 
   // ================ DATA ================
@@ -31,15 +31,17 @@ export default function useSlider (props, context, dependencies)
       cssPrefix: 'slider-',
       orientation: orientation.value,
       direction: direction.value,
-      tooltips: tooltips.value,
-      format: tooltipFormat.value,
+      tooltips: tooltips.value ? tooltipsFormat.value : false,
       connect: 'lower',
       start: isNullish(value.value) ? min.value : value.value,
-      step: step.value,
       range: {
         'min': min.value,
         'max': max.value
       }
+    }
+
+    if (step.value > 0) {
+      defaultOptions.step = step.value
     }
 
     if (Array.isArray(value.value)) {
@@ -64,8 +66,8 @@ export default function useSlider (props, context, dependencies)
     let sliderValue = slider$.value.get()
 
     return Array.isArray(sliderValue)
-      ? sliderValue.map(v => tooltipFormat.value.from(v))
-      : tooltipFormat.value.from(sliderValue)
+      ? sliderValue.map(v => parseFloat(v))
+      : parseFloat(sliderValue)
   }
 
   const update = (val) => {
@@ -82,8 +84,8 @@ export default function useSlider (props, context, dependencies)
   const init = () => {
     slider$.value = noUiSlider.create(slider.value, Object.assign({}, defaultOptions.value, options.value))
 
-    if (tooltips.value && isRange.value && mergeTooltips.value >= 0) {
-      tooltipsMerge(slider.value, mergeTooltips.value, ' - ')
+    if (tooltips.value && isRange.value && merge.value >= 0) {
+      tooltipsMerge(slider.value, merge.value, ' - ')
     }
 
     slider$.value.on('set', (val) => {
@@ -132,7 +134,7 @@ export default function useSlider (props, context, dependencies)
   watch(direction, refresh, { immediate: false })
   watch(tooltips, refresh, { immediate: false })
   watch(format, refresh, { immediate: false, deep: true })
-  watch(mergeTooltips, refresh, { immediate: false })
+  watch(merge, refresh, { immediate: false })
   watch(options, refresh, { immediate: false, deep: true })
 
   watch(value, (newValue) => {

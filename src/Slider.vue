@@ -16,11 +16,11 @@
     ],
     props: {
       value: {
-        validator: p => ['string', 'number'].indexOf(typeof p) !== -1 || p instanceof Array || p === null || p === undefined || p === false,
+        validator: p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false,
         required: false,
       },
       modelValue: {
-        validator: p => ['string', 'number'].indexOf(typeof p) !== -1 || p instanceof Array || p === null || p === undefined || p === false,
+        validator: p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false,
         required: false,
       },
       id: {
@@ -63,7 +63,7 @@
         required: false,
         default: () => ({})
       },
-      mergeTooltips: {
+      merge: {
         type: Number,
         required: false,
         default: -1
@@ -74,7 +74,7 @@
         default: '300px'
       },
       format: {
-        type: Object,
+        type: [Object, Function],
         required: false,
         default: null,
       },
@@ -85,12 +85,14 @@
       const value = useValue(props, context)
 
       const style = useStyle(props, context)
-      const tooltip = useTooltip(props, context)
+      const tooltip = useTooltip(props, context, {
+        value: value.value,
+      })
 
       const slider = useSlider(props, context, {
         value: value.value,
         initialValue: value.initialValue,
-        tooltipFormat: tooltip.tooltipFormat,
+        tooltipsFormat: tooltip.tooltipsFormat,
         tooltipsMerge: tooltip.tooltipsMerge,
       })
 

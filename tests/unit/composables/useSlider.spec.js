@@ -290,12 +290,12 @@ describe('useSlider', () => {
       expect(tooltip.html()).toContain('5.00')
     })
 
-    it('should refresh slider when mergeTooltips changes', async () => {
+    it('should refresh slider when merge changes', async () => {
       const slider = createSlider({
         value: [5, 10],
       })
 
-      setProp(slider, slider.vm.$parent.props, 'mergeTooltips', 10)
+      setProp(slider, slider.vm.$parent.props, 'merge', 10)
 
       await nextTick()
 
@@ -320,65 +320,67 @@ describe('useSlider', () => {
     it('should update slider value if v-model changes when not range', async () => {
       const slider = createSlider({
         value: 5,
+        step: -1
       })
       
-      expect(slider.vm.slider$.get()).toBe(5)
+      expect(slider.vm.slider$.get()).toBe('5.00')
 
       slider.vm.$parent.value = 10
       await nextTick()
-      expect(slider.vm.slider$.get()).toBe(10)
+      expect(slider.vm.slider$.get()).toBe('10.00')
 
       slider.vm.$parent.value = null
       await nextTick()
-      expect(slider.vm.slider$.get()).toBe(0)
+      expect(slider.vm.slider$.get()).toBe('0.00')
 
-      slider.vm.$parent.value = 1
+      slider.vm.$parent.value = 1.21
       await nextTick()
-      expect(slider.vm.slider$.get()).toBe(1)
+      expect(slider.vm.slider$.get()).toBe('1.21')
 
       slider.vm.$parent.value = undefined
       await nextTick()
-      expect(slider.vm.slider$.get()).toBe(0)
+      expect(slider.vm.slider$.get()).toBe('0.00')
 
       slider.vm.$parent.value = 1
       await nextTick()
-      expect(slider.vm.slider$.get()).toBe(1)
+      expect(slider.vm.slider$.get()).toBe('1.00')
 
       slider.vm.$parent.value = false
       await nextTick()
-      expect(slider.vm.slider$.get()).toBe(0)
+      expect(slider.vm.slider$.get()).toBe('0.00')
     })
 
     it('should update slider value if v-model changes when range', async () => {
       const slider = createSlider({
         value: [5, 10],
+        step: -1
       })
       
-      expect(slider.vm.slider$.get()).toStrictEqual([5, 10])
+      expect(slider.vm.slider$.get()).toStrictEqual(['5.00', '10.00'])
 
       slider.vm.$parent.value = [15, 20]
       await nextTick()
-      expect(slider.vm.slider$.get()).toStrictEqual([15, 20])
+      expect(slider.vm.slider$.get()).toStrictEqual(['15.00', '20.00'])
 
       slider.vm.$parent.value = null
       await nextTick()
-      expect(slider.vm.slider$.get()).toStrictEqual(0)
+      expect(slider.vm.slider$.get()).toStrictEqual('0.00')
 
-      slider.vm.$parent.value = [1, 2]
+      slider.vm.$parent.value = [1.21, 2]
       await nextTick()
-      expect(slider.vm.slider$.get()).toStrictEqual([1, 2])
+      expect(slider.vm.slider$.get()).toStrictEqual(['1.21', '2.00'])
 
       slider.vm.$parent.value = undefined
       await nextTick()
-      expect(slider.vm.slider$.get()).toStrictEqual(0)
+      expect(slider.vm.slider$.get()).toStrictEqual('0.00')
 
       slider.vm.$parent.value = [1, 2]
       await nextTick()
-      expect(slider.vm.slider$.get()).toStrictEqual([1, 2])
+      expect(slider.vm.slider$.get()).toStrictEqual(['1.00', '2.00'])
 
       slider.vm.$parent.value = false
       await nextTick()
-      expect(slider.vm.slider$.get()).toStrictEqual(0)
+      expect(slider.vm.slider$.get()).toStrictEqual('0.00')
     })
   })
 })
