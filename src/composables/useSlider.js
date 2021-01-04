@@ -81,7 +81,7 @@ export default function useSlider (props, context, dependencies)
     slider$.value = noUiSlider.create(slider.value, Object.assign({}, defaultOptions.value, options.value))
 
     if (tooltips.value && isRange.value && mergeTooltips.value > 0) {
-      tooltipsMerge(slider.value, mergeTooltips.value, ' - ')
+      tooltipsMerge(slider.value, Math.round(mergeTooltips.value / step.value), ' - ')
     }
 
     slider$.value.on('change', (val) => {

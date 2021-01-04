@@ -58,10 +58,6 @@
         required: false,
         default: true,
       },
-      format: {
-        type: Function,
-        required: false,
-      },
       options: {
         type: Object,
         required: false,
@@ -80,6 +76,7 @@
       format: {
         type: Object,
         required: false,
+        default: null,
       },
     },
     setup(props, context)

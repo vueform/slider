@@ -14,7 +14,7 @@ export default function useValue (props, context, dependencies)
   // ================ HOOKS ===============
 
   if (isNullish(value.value)) {
-    throw new Error('Slider v-model must not be a Number or Array')
+    throw new Error('Slider v-model must be a Number or Array')
   }
 
   if (Array.isArray(value.value) && value.value.length == 0) {

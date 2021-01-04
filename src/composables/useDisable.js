@@ -1,4 +1,4 @@
-import { ref } from 'composition-api'
+import { computed } from 'composition-api'
 
 export default function useDisable (props, context, dependencies)
 {
@@ -6,9 +6,11 @@ export default function useDisable (props, context, dependencies)
 
   const slider = dependencies.slider
 
-  // ================ DATA ================
+  // ============== COMPUTED ==============
 
-  const disabled = ref(false)
+  const disabled = computed(() => {
+    return slider.value.getAttribute('disabled') == 'true'
+  })
 
   // =============== METHODS ==============
 
