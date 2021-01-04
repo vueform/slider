@@ -8,6 +8,8 @@
   "main": "./dist/slider.js",
   "module": "./dist/slider.js",
   "unpkg": "./dist/slider.global.js",
+  "browser": "./dist/slider.global.js",
+  "style": "./themes/default.css",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vueform/slider.git"
@@ -30,6 +32,8 @@
     "@babel/preset-env": "^7.12.10",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
     "@testing-library/jest-dom": "^5.11.5",
     "@vue/compiler-sfc": "^3.0.4",
     "autoprefixer": "^10.1.0",

@@ -1,5 +1,5 @@
 import { ref, computed, toRefs, watch, onMounted, onUnmounted } from 'composition-api'
-import noUiSlider from 'nouislider'
+import nouislider from 'nouislider'
 import isNullish from './../utils/isNullish'
 import arraysEqual from './../utils/arraysEqual'
 
@@ -82,7 +82,7 @@ export default function useSlider (props, context, dependencies)
   }
 
   const init = () => {
-    slider$.value = noUiSlider.create(slider.value, Object.assign({}, defaultOptions.value, options.value))
+    slider$.value = nouislider.create(slider.value, Object.assign({}, defaultOptions.value, options.value))
 
     if (tooltips.value && isRange.value && merge.value >= 0) {
       tooltipsMerge(slider.value, merge.value, ' - ')

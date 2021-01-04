@@ -1,5 +1,5 @@
 import { computed, toRefs } from 'composition-api'
-import wNumb from 'wnumb'
+import wnumb from 'wnumb'
 
 export default function useTooltip (props, context, dependencies)
 {
@@ -14,14 +14,14 @@ export default function useTooltip (props, context, dependencies)
   // no export
   const tooltipFormat = computed(() => {
     if (!format || !format.value) {
-      return wNumb({ decimals: step.value >= 0 ? 0 : 2 })
+      return wnumb({ decimals: step.value >= 0 ? 0 : 2 })
     }
 
     if (typeof format.value == 'function') {
       return { to: format.value }
     }
 
-    return wNumb(Object.assign({}, format.value))
+    return wnumb(Object.assign({}, format.value))
   })
 
   const tooltipsFormat = computed(() => {

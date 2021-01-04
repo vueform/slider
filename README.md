@@ -21,7 +21,7 @@
     <img alt="npm" src="https://img.shields.io/npm/v/@vueform/slider">
   </a>
 
-  <h1>Vue 3 slider by <a href="https://vueform.com?ref=github" target="_blank">Vueform</a></h1>
+  <h1>Vue 3 Slider</h1>
   
   <a href="https://vueform.com?ref=github" target="_blank">
     <br>
@@ -45,16 +45,18 @@
   <a href="https://vueform.com?ref=github"><img src="https://github.com/vueform/slider/raw/main/assets/logo-horizontal.svg" width="200"></a>
 </div>
 
-## Multiselect features
+## Slider features
 
 * Vue 2 & 3 support
-* No dependencies
-* Lightweight (~5 kB gzipped)
 * 100% coverage
 * ESM support
 * Fully configurable
+* Single slider
+* Multiple sliders
+* Tooltips
+* Formatting
 
-## Demo
+## Demo 
 
 Check out our [demo](https://jsfiddle.net/wLxfv2p5/).
 
@@ -69,28 +71,20 @@ npm install @vueform/slider
 ``` vue
 <template>
   <div>
-    <Multiselect
-      v-model="value"
-      :options="options"
-    />
+    <Slider v-model="value" />
   </div>
 </template>
 
 <script>
-  import Multiselect from '@vueform/slider'
+  import Slider from '@vueform/slider'
 
   export default {
     components: {
-      Multiselect,
+      Slider,
     },
     data() {
       return {
-        value: null,
-        options: [
-          'Batman',
-          'Robin',
-          'Joker',
-        ]
+        value: 20
       }
     }
   }
@@ -104,7 +98,7 @@ npm install @vueform/slider
 When using with Vue 2 make sure to install [@vue/composition-api](https://github.com/vuejs/composition-api#npm) first and change the imported module to:
 
 ``` js
-import Multiselect from '@vueform/slider/dist/slider.vue2.js'
+import Slider from '@vueform/slider/dist/slider.vue2.js'
 ```
 
 ## Support
@@ -115,28 +109,157 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| **mode** | `string` | `single` | Possible values: `single\|multiple\|tags`. |
+| **min** | `number` | `0` | Minimum value of the slider. |
+| **max** | `number` | `100` | Maximum value of the slider. |
+| **step** | `number` | `1` | The jump between intervals. If `-1` it enables fractions (eg. `1.23`). |
+| **tooltips** | `boolean` | `true` | Whether tooltips should show above handlers. |
+| **merge** | `number` | `-1` | The step distance between two handles when their tooltips should be merged (when `step` is `-1` then `1` is assumed). Eg: <br><br> `{ merge: 5, step: 10 }` <br> -> values: `0, <=50` will merge <br> -> values: `0, 60` will not merge <br><br> `{ merge: 5, step: -1 }` <br> -> values: `0, <=5` will merge <br> -> values: `0, 5.01` will not merge  |
+| **format** | `object\|function` |  | Formats the tooltip. It can be either a function that receives a `value` param and expects a string or number as return or an object with the following properties: <br> `prefix` - eg `$` -> `$100` <br> `suffix` - eg `USD` -> `100USD` <br> `decimals` - eg `2` -> `100.00`  <br> `thousand` - eg `,` - `1,000` |
+| **orientation** | `string` | `'horizontal'` | The orientation of the slider. Possible values: `horizontal|vertical` |
+| **height** | `string` | `'300px'` | The height of the slider when `orientation` is `vertical`. Can have any valid CSS measure suffix. |
+| **direction** | `string` | `'ltr'` | The direction of the slider. By default value increases *left-to-right* and *top-to-bottom*, which is reversed when using `rtl`. Possible values: `ltr|rtl` |
 
 ## Events
 
 | Event | Attributes | Description |
 | --- | --- | --- |
-| **@change** | `value` | Emitted after the value is changed. |
+| **@change** | `value` | Emitted when dragging the slider is finished or it's value changed by clicking, keyboard or programmatical set. |
+| **@update** | `value` | Emitted in the same scenarios as changed, but also when the slider is being dragged. |
 
 ## Examples
 
-* [Single select](#single-select)
+* [Single slider](#single-slider)
+* [Multiple slider](#multiple-slider)
+* [Tooltip formatting](#tooltip-formatting)
+* [Tooltip mergin](#tooltip-merging)
+* [Vertical slider](#vertical-slider)
 
-### Single select
+### Single slider
 
 ``` vue
-<Multiselect
-  v-model="value"
-  :options="['Batman', 'Robin', 'Joker']"
-/>
+<template>
+  <Slider
+    v-model="value"
+  />
+</template>
+
+<script>
+  import Slider from '@vueform/slider'
+
+  export default {
+    components: { Slider },
+    data: () => ({
+      value: 20
+    })
+  }
+</script>
 ```
 
 [JSFiddle - Example #1](https://jsfiddle.net/wLxfv2p5/)
+
+### Multiple slider
+
+``` vue
+<template>
+  <Slider
+    v-model="value"
+  />
+</template>
+
+<script>
+  import Slider from '@vueform/slider'
+
+  export default {
+    components: { Slider },
+    data: () => ({
+      value: [20, 40]
+    })
+  }
+</script>
+```
+
+[JSFiddle - Example #2](https://jsfiddle.net/wLxfv2p5/)
+
+### Tooltip formatting
+
+``` vue
+<template>
+  <Slider
+    v-model="value"
+    :format="format"
+  />
+</template>
+
+<script>
+  import Slider from '@vueform/slider'
+
+  export default {
+    components: { Slider },
+    data: () => ({
+      value: 20,
+      format: function (value) {
+        return `€${value}`
+      }
+    })
+  }
+</script>
+```
+
+[JSFiddle - Example #3](https://jsfiddle.net/wLxfv2p5/)
+
+### Tooltip merging
+
+``` vue
+<template>
+  <Slider
+    v-model="value"
+    :merge="merge"
+    :format="format"
+  />
+</template>
+
+<script>
+  import Slider from '@vueform/slider'
+
+  export default {
+    components: { Slider },
+    data: () => ({
+      value: [20, 30, 40],
+      merge: 10,
+      format: {
+        prefix: '$',
+        decimals: 2
+      }
+    })
+  }
+</script>
+```
+
+[JSFiddle - Example #4](https://jsfiddle.net/wLxfv2p5/)
+
+### Vertical slider
+
+``` vue
+<template>
+  <Slider
+    v-model="value"
+  />
+</template>
+
+<script>
+  import Slider from '@vueform/slider'
+
+  export default {
+    components: { Slider },
+    data: () => ({
+      value: 50,
+      orientation: 'vertical'
+    })
+  }
+</script>
+```
+
+[JSFiddle - Example #5](https://jsfiddle.net/wLxfv2p5/)
 
 ## About Vueform
 
