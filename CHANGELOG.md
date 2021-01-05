@@ -1,3 +1,10 @@
+## v1.0.2
+
+> `2020-01-04`
+
+### 🐞 Bug Fixes
+  - `package.json` `browser` property fix
+
 ## v1.0.1
 
 > `2020-01-04`

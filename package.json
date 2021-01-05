@@ -1,14 +1,13 @@
 {
   "name": "@vueform/slider",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
-  "description": "Vue 3 slider component",
+  "description": "Vue 3 slider component with multihandles, tooltips merging and formatting.",
   "license": "MIT",
   "author": "Adam Berecz <adam@vueform.com>",
   "main": "./dist/slider.js",
   "module": "./dist/slider.js",
   "unpkg": "./dist/slider.global.js",
-  "browser": "./dist/slider.global.js",
   "style": "./themes/default.css",
   "repository": {
     "type": "git",
