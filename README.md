@@ -45,6 +45,11 @@
   <a href="https://vueform.com?ref=github"><img src="https://github.com/vueform/slider/raw/main/assets/logo-horizontal.svg" width="200"></a>
 </div>
 
+## Other libraries
+
+* [@vueform/multiselect](https://github.com/vueform/multiselect) - Vue 3 multiselect component with single select, multiselect and tagging options.
+* [@vueform/toggle](https://github.com/vueform/toggle) - Vue 3 toggle component with labels, custom slots and styling options.
+
 ## Slider features
 
 * Vue 2 & 3 support
