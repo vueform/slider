@@ -7,7 +7,6 @@
   import useStyle from './composables/useStyle'
   import useTooltip from './composables/useTooltip'
   import useSlider from './composables/useSlider'
-  import useDisable from './composables/useDisable'
 
   /* istanbul ignore next */
   const valueProps = {
@@ -36,6 +35,11 @@
         type: [String, Number],
         required: false,
         default: 'slider'
+      },
+      disabled: {
+        type: Boolean,
+        required: false,
+        default: false,
       },
       min: {
         type: Number,
@@ -105,15 +109,10 @@
         tooltipsMerge: tooltip.tooltipsMerge,
       })
 
-      const disable = useDisable(props, context, {
-        slider: slider.slider,
-      })
-
       return {
         ...style,
         ...tooltip,
         ...slider,
-        ...disable,
       }
     }
   }
