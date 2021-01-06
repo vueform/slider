@@ -114,6 +114,8 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| **id** | `string` | `slider` | The `id` attribute of slider container DOM. |
+| **disabled** | `boolean` | `false` | Whether the slider should be disabled. |
 | **min** | `number` | `0` | Minimum value of the slider. |
 | **max** | `number` | `100` | Maximum value of the slider. |
 | **step** | `number` | `1` | The jump between intervals. If `-1` it enables fractions (eg. `1.23`). |

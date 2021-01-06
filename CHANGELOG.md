@@ -1,3 +1,10 @@
+## v1.0.3
+
+> `2020-01-06`
+
+### 🎉 Features
+  - Added `disabled` & `id` properties
+
 ## v1.0.2
 
 > `2020-01-04`
