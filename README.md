@@ -106,6 +106,13 @@ When using with Vue 2 make sure to install [@vue/composition-api](https://github
 import Slider from '@vueform/slider/dist/slider.vue2.js'
 ```
 
+If you are getting the `Property or method "style" is not defined` it means the composition api is not yet properly installed:
+
+```js
+import VueCompositionAPI from '@vue/composition-api'
+Vue.use(VueCompositionAPI)
+```
+
 ## Support
 
 Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](https://github.com/vueform/slider/issues).
