@@ -87,7 +87,7 @@
         default: '300px'
       },
       format: {
-        type: [Object, Function],
+        type: [Object, Function, Boolean],
         required: false,
         default: null,
       },

@@ -317,10 +317,13 @@ describe('useSlider', () => {
       expect(slider.vm.slider$.options.margin).toStrictEqual(10)
     })
 
-    it('should update slider value if v-model changes when not range', async () => {
+    it('should update slider value if v-model changes when not range and not trigger change', async () => {
+      let changeMock = jest.fn()
+
       const slider = createSlider({
         value: 5,
-        step: -1
+        step: -1,
+        onChange: changeMock,
       })
       
       expect(slider.vm.slider$.get()).toBe('5.00')
@@ -348,12 +351,17 @@ describe('useSlider', () => {
       slider.vm.$parent.value = false
       await nextTick()
       expect(slider.vm.slider$.get()).toBe('0.00')
+
+      expect(changeMock).not.toHaveBeenCalled()
     })
 
     it('should update slider value if v-model changes when range', async () => {
+      let changeMock = jest.fn()
+
       const slider = createSlider({
         value: [5, 10],
-        step: -1
+        step: -1,
+        onChange: changeMock,
       })
       
       expect(slider.vm.slider$.get()).toStrictEqual(['5.00', '10.00'])
@@ -381,6 +389,8 @@ describe('useSlider', () => {
       slider.vm.$parent.value = false
       await nextTick()
       expect(slider.vm.slider$.get()).toStrictEqual('0.00')
+
+      expect(changeMock).not.toHaveBeenCalled()
     })
   })
 })

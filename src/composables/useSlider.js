@@ -70,8 +70,8 @@ export default function useSlider (props, context, dependencies)
       : parseFloat(sliderValue)
   }
 
-  const update = (val) => {
-    slider$.value.set(val)
+  const update = (val, triggerChange = true) => {
+    slider$.value.set(val, triggerChange)
   }
 
   // no export
@@ -135,12 +135,12 @@ export default function useSlider (props, context, dependencies)
 
   watch(value, (newValue) => {
     if (isNullish(newValue)) {
-      update(min.value)
+      update(min.value, false)
       return
     }
 
     if ((isRange.value && !arraysEqual(newValue, getSliderValue())) || (!isRange.value && newValue != getSliderValue())) {
-      update(newValue)
+      update(newValue, false)
     }
   }, { deep: true })
 
