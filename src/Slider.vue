@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" :style="style" ref="slider"></div>
+  <div :id="id" :style="style" :disabled="disabled" ref="slider"></div>
 </template>
 
 <script>
