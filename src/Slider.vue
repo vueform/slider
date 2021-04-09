@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" :style="style" :disabled="disabled" ref="slider"></div>
+  <div v-bind="sliderProps" ref="slider"></div>
 </template>
 
 <script>
@@ -107,6 +107,7 @@
         initialValue: value.initialValue,
         tooltipsFormat: tooltip.tooltipsFormat,
         tooltipsMerge: tooltip.tooltipsMerge,
+        style: style.style,
       })
 
       return {

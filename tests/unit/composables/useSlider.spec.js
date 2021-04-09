@@ -22,6 +22,21 @@ describe('useSlider', () => {
     })
   })
 
+  describe('sliderProps', () => {
+    it('should include disabled', () => {
+      const slider = createSlider({
+        value: 5,
+        disabled: true,
+      })
+
+      expect(slider.vm.sliderProps).toStrictEqual({
+        id: slider.vm.id,
+        style: slider.vm.style,
+        disabled: true,
+      })
+    })
+  })
+
   describe('isRange', () => {
     it('should be false if not range', () => {
       const slider = createSlider({
