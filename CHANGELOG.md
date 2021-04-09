@@ -1,3 +1,11 @@
+## v1.0.4
+
+> `2021-04-09`
+
+### 🐞 Bug Fixes
+  - Fixed `:disabled` property not working ([#9](https://github.com/vueform/slider/issues/9)).
+  - Don't emit change on exogenous change, fix for [#4](https://github.com/vueform/slider/issues/4).
+
 ## v1.0.3
 
 > `2021-01-06`
