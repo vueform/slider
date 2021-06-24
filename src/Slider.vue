@@ -5,7 +5,6 @@
 <script>
   import useValue from './composables/useValue'
   import useClasses from './composables/useClasses'
-  import useStyle from './composables/useStyle'
   import useTooltip from './composables/useTooltip'
   import useSlider from './composables/useSlider'
 
@@ -35,7 +34,6 @@
       id: {
         type: [String, Number],
         required: false,
-        default: 'slider'
       },
       disabled: {
         type: Boolean,
@@ -82,11 +80,6 @@
         required: false,
         default: -1
       },
-      height: {
-        type: String,
-        required: false,
-        default: '300px'
-      },
       format: {
         type: [Object, Function, Boolean],
         required: false,
@@ -104,7 +97,6 @@
       const value = useValue(props, context)
 
       const classes = useClasses(props, context)
-      const style = useStyle(props, context)
       const tooltip = useTooltip(props, context, {
         value: value.value,
       })
@@ -114,13 +106,11 @@
         initialValue: value.initialValue,
         tooltipsFormat: tooltip.tooltipsFormat,
         tooltipsMerge: tooltip.tooltipsMerge,
-        style: style.style,
         classList: classes.classList,
       })
 
       return {
         ...classes,
-        ...style,
         ...tooltip,
         ...slider,
       }
