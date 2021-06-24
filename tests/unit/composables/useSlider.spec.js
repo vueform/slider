@@ -31,7 +31,6 @@ describe('useSlider', () => {
 
       expect(slider.vm.sliderProps).toStrictEqual({
         id: slider.vm.id,
-        style: slider.vm.style,
         disabled: true,
       })
     })
