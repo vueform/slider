@@ -114,7 +114,17 @@ export default function useSlider (props, context, dependencies)
         return
       }
 
-      updateValue(getSliderValue())
+      const sliderValue = getSliderValue()
+
+      if ((isRange.value && arraysEqual(value.value, sliderValue)) || (!isRange.value && value.value == sliderValue)) {
+        context.emit('update', sliderValue)
+        // Required because set event is not
+        // triggered even though it should be
+        context.emit('change', sliderValue)
+        return
+      }
+
+      updateValue(sliderValue)
     })
 
     inited.value = true
