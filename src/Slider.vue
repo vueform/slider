@@ -4,6 +4,7 @@
 
 <script>
   import useValue from './composables/useValue'
+  import useClasses from './composables/useClasses'
   import useStyle from './composables/useStyle'
   import useTooltip from './composables/useTooltip'
   import useSlider from './composables/useSlider'
@@ -91,12 +92,18 @@
         required: false,
         default: null,
       },
+      classes: {
+        type: Object,
+        required: false,
+        default: () => ({}),
+      }
     },
     setup(props, context)
     {
       // no export
       const value = useValue(props, context)
 
+      const classes = useClasses(props, context)
       const style = useStyle(props, context)
       const tooltip = useTooltip(props, context, {
         value: value.value,
@@ -108,9 +115,11 @@
         tooltipsFormat: tooltip.tooltipsFormat,
         tooltipsMerge: tooltip.tooltipsMerge,
         style: style.style,
+        classList: classes.classList,
       })
 
       return {
+        ...classes,
         ...style,
         ...tooltip,
         ...slider,

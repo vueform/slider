@@ -5,7 +5,10 @@ import arraysEqual from './../utils/arraysEqual'
 
 export default function useSlider (props, context, dependencies)
 {
-  const { options, orientation, direction, tooltips, step, min, max, merge, format, id, disabled } = toRefs(props)
+  const {
+    options, orientation, direction, tooltips, step,
+    min, max, merge, format, id, disabled, classes,
+  } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
@@ -14,6 +17,7 @@ export default function useSlider (props, context, dependencies)
   const tooltipsFormat = dependencies.tooltipsFormat
   const tooltipsMerge = dependencies.tooltipsMerge
   const style = dependencies.style
+  const classList = dependencies.classList
 
   // ================ DATA ================
 
@@ -29,7 +33,8 @@ export default function useSlider (props, context, dependencies)
   // no export
   const defaultOptions = computed(() => {
     let defaultOptions = {
-      cssPrefix: 'slider-',
+      cssPrefix: '',
+      cssClasses: classList.value,
       orientation: orientation.value,
       direction: direction.value,
       tooltips: tooltips.value ? tooltipsFormat.value : false,
