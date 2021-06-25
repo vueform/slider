@@ -1,4 +1,4 @@
-import { ref, computed, toRefs, watch, onMounted, onUnmounted } from 'composition-api'
+import { ref, computed, toRefs, watch, onMounted, onUnmounted, reactive } from 'composition-api'
 import nouislider from 'nouislider'
 import isNullish from './../utils/isNullish'
 import arraysEqual from './../utils/arraysEqual'
@@ -6,9 +6,14 @@ import arraysEqual from './../utils/arraysEqual'
 export default function useSlider (props, context, dependencies)
 {
   const {
-    options, orientation, direction, tooltips, step,
-    min, max, merge, format, id, disabled,
+    orientation, direction, tooltips, step,
+    min, max, merge, id, disabled,
   } = toRefs(props)
+
+  const options = reactive(props.options)
+  let format = props.format && typeof props.format == 'object'
+    ? reactive(props.format)
+    : ref(props.format)
 
   // ============ DEPENDENCIES ============
 
@@ -136,7 +141,7 @@ export default function useSlider (props, context, dependencies)
     slider$.value = null
   }
 
-  const refresh = () => {
+  const refresh = (n,o) => {
     inited.value = false
     destroy()
     init()

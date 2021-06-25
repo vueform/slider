@@ -21,7 +21,7 @@ export default function useTooltip (props, context, dependencies)
       return { to: format.value }
     }
 
-    return wnumb(Object.assign({}, format.value))
+    return wnumb({...format.value})
   })
 
   const tooltipsFormat = computed(() => {
