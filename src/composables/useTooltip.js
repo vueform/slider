@@ -58,8 +58,8 @@ export default function useTooltip (props, context, dependencies)
         poolValues[0][0] = tooltipFormat.value.to(parseFloat(values[0]))
       }
 
-      for (var i = 1; i < positions.length; i++) {
-        if (!tooltips[i] || (positions[i] - positions[i - 1]) > threshold) {
+      for (var i = 1; i < values.length; i++) {
+        if (!tooltips[i] || (values[i] - values[i - 1]) > threshold) {
           atPool++
           pools[atPool] = []
           poolValues[atPool] = []
