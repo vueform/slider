@@ -151,6 +151,36 @@ describe('useSlider', () => {
 
       expect(slider.emitted('update')[0][0]).toBe(20)
     })
+
+    it('should add focused class on handle focus', async () => {
+      const slider = createSlider({
+        value: 5,
+      }, {
+        attach: true
+      })
+
+      slider.vm.slider.querySelector('[data-handle]').blur()
+      slider.vm.slider.querySelector('[data-handle]').focus()
+
+      await nextTick()
+
+      expect(slider.vm.slider.classList.contains(slider.vm.classList.focused)).toBe(true)
+    })
+
+    it('should remove focused class on handle blue', async () => {
+      const slider = createSlider({
+        value: 5
+      }, {
+        attach: true
+      })
+
+      slider.vm.slider.querySelector('[data-handle]').focus()
+      slider.vm.slider.querySelector('[data-handle]').blur()
+
+      await nextTick()
+
+      expect(slider.vm.slider.classList.contains(slider.vm.classList.focused)).toBe(false)
+    })
   })
 
   describe('destroy', () => {
@@ -293,9 +323,10 @@ describe('useSlider', () => {
     it('should refresh slider when format changes', async () => {
       const slider = createSlider({
         value: 5,
+        format: { }
       })
 
-      setProp(slider, slider.vm.$parent.props, 'format', { decimals: 2 })
+      setProp(slider, slider.vm.$parent.props.format, 'decimals', 2)
 
       await nextTick()
 
@@ -321,9 +352,10 @@ describe('useSlider', () => {
     it('should refresh slider when options changes', async () => {
       const slider = createSlider({
         value: 5,
+        options: {}
       })
 
-      setProp(slider, slider.vm.$parent.props, 'options', { margin: 10 })
+      setProp(slider, slider.vm.$parent.props.options, 'margin', 10)
 
       await nextTick()
 
