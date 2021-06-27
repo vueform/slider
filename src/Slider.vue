@@ -89,6 +89,11 @@
         type: Object,
         required: false,
         default: () => ({}),
+      },
+      showTooltip: {
+        type: String,
+        required: false,
+        default: 'always'
       }
     },
     setup(props, context)
@@ -99,6 +104,7 @@
       const classes = useClasses(props, context)
       const tooltip = useTooltip(props, context, {
         value: value.value,
+        classList: classes.classList,
       })
 
       const slider = useSlider(props, context, {

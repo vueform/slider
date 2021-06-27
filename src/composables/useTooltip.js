@@ -8,6 +8,7 @@ export default function useTooltip (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const value = dependencies.value
+  const classList = dependencies.classList
 
   // ============== COMPUTED ==============
 
@@ -83,7 +84,7 @@ export default function useTooltip (props, context, dependencies)
             var offset = 0
 
             poolPositions[poolIndex].forEach(function (value) {
-                offset += 1000 - 10 * value
+              offset += 1000 - 10 * value
             })
 
             var direction = isVertical ? 'bottom' : 'right'
@@ -95,9 +96,13 @@ export default function useTooltip (props, context, dependencies)
             tooltips[handleNumber].innerHTML = poolValues[poolIndex].join(separator)
             tooltips[handleNumber].style.display = 'block'
             tooltips[handleNumber].style[direction] = offset + '%'
+            if (tooltips[handleNumber].classList.contains(classList.value.tooltipHidden)) {
+              tooltips[handleNumber].classList.remove(classList.value.tooltipHidden)
+            }
           } else {
             // Hide this tooltip
             tooltips[handleNumber].style.display = 'none'
+            tooltips[handleNumber].classList.add(classList.value.tooltipHidden)
           }
         }
       })

@@ -87,6 +87,17 @@
   cursor: inherit !important;
 }
 
+.slider-tooltip-focus .slider-tooltip,
+.slider-tooltip-drag .slider-tooltip {
+  display: none !important;
+}
+
+.slider-tooltip-focus.slider-focused .slider-tooltip:not(.slider-tooltip-hidden),
+.slider-tooltip-drag.slider-state-drag .slider-tooltip:not(.slider-tooltip-hidden),
+.slider-tooltip-drag .slider-active .slider-tooltip {
+  display: block !important;
+}
+
 .slider-horizontal {
   height: var(--slider-height, 6px);
 }

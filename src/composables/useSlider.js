@@ -7,11 +7,12 @@ export default function useSlider (props, context, dependencies)
 {
   const {
     orientation, direction, tooltips, step,
-    min, max, merge, id, disabled,
+    min, max, merge, id, disabled
   } = toRefs(props)
 
   const options = reactive(props.options)
-  let format = props.format && typeof props.format == 'object'
+  const classes = reactive(props.classes)
+  const format = props.format && typeof props.format == 'object'
     ? reactive(props.format)
     : ref(props.format)
 
@@ -104,7 +105,7 @@ export default function useSlider (props, context, dependencies)
   }
 
   const init = () => {
-    slider$.value = nouislider.create(slider.value, Object.assign({}, defaultOptions.value, options.value))
+    slider$.value = nouislider.create(slider.value, Object.assign({}, defaultOptions.value, options))
 
     if (tooltips.value && isRange.value && merge.value >= 0) {
       tooltipsMerge(slider.value, merge.value, ' - ')
@@ -125,11 +126,24 @@ export default function useSlider (props, context, dependencies)
         context.emit('update', sliderValue)
         // Required because set event is not
         // triggered even though it should be
-        context.emit('change', sliderValue)
         return
       }
 
       updateValue(sliderValue)
+    })
+
+    slider.value.querySelectorAll('[data-handle]').forEach((handle) => {
+      handle.onblur = () => {
+        classList.value.focused.split(' ').forEach((c) => {
+          slider.value.classList.remove(c)
+        })
+      }
+
+      handle.onfocus = () => {
+        classList.value.focused.split(' ').forEach((c) => {
+          slider.value.classList.add(c)
+        })
+      }
     })
 
     inited.value = true
@@ -164,6 +178,7 @@ export default function useSlider (props, context, dependencies)
   watch(format, refresh, { immediate: false, deep: true })
   watch(merge, refresh, { immediate: false })
   watch(options, refresh, { immediate: false, deep: true })
+  watch(classes, refresh, { immediate: false, deep: true })
 
   watch(value, (newValue) => {
     if (isNullish(newValue)) {
