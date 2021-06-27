@@ -1,6 +1,13 @@
+## v2.0.1
+
+> `2021-06-27`
+
+### 🐞 Bug Fixes
+  - Added missing files.
+
 ## v2.0.0
 
-> `2021-06-24`
+> `2021-06-27`
 
 ### 🎉 Features
   - **BREAKING**: removed `height` prop & rewritten `default.css`.
