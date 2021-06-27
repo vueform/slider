@@ -1,4 +1,9 @@
 <div align="center">
+
+  <a href="https://www.npmjs.com/package/@vueform/slider" target="_blank">
+    <img alt="npm" src="https://img.shields.io/npm/dm/@vueform/slider?color=%2353ca2f">
+  </a>
+
   <img alt="CircleCI" src="https://img.shields.io/circleci/build/github/vueform/slider">
 
   <a href="https://codecov.io/gh/vueform/slider" target="_blank">
@@ -9,10 +14,6 @@
     <img alt="npm bundle size (scoped version)" src="https://img.shields.io/bundlephobia/minzip/@vueform/slider?color=53ca2f">
   </a>
 
-  <a href="https://github.com/vueform/slider/blob/main/LICENSE.md" target="_blank">
-    <img alt="GitHub" src="https://img.shields.io/github/license/vueform/slider?color=53ca2f">
-  </a>
-
   <a href="https://discord.gg/WhX2nG6GTQ" target="_blank">
     <img alt="Discord" src="https://img.shields.io/discord/787237947635793940">
   </a>
@@ -21,7 +22,7 @@
     <img alt="npm" src="https://img.shields.io/npm/v/@vueform/slider">
   </a>
 
-  <h1>Vue 3 Slider</h1>
+  <h1>Vue 3 Slider with Tailwind support</h1>
   
   <a href="https://vueform.com?ref=github" target="_blank">
     <br>
@@ -36,7 +37,6 @@
     <img align="center" src="https://github.com/vueform/slider/raw/main/assets/screenshot-1.png">
   </a>
   <br>
-
 </div>
 
 ## Sponsors
@@ -47,23 +47,26 @@
 
 ## Other libraries
 
-* [@vueform/multiselect](https://github.com/vueform/multiselect) - Vue 3 multiselect component with single select, multiselect and tagging options.
-* [@vueform/toggle](https://github.com/vueform/toggle) - Vue 3 toggle component with labels, custom slots and styling options.
+* [@vueform/multiselect](https://github.com/vueform/multiselect) - Vue 3 multiselect component with tagging options & Tailwind support.
+* [@vueform/toggle](https://github.com/vueform/toggle) - Vue 3 toggle component with custom labels & Tailwind support.
 
 ## Slider features
 
 * Vue 2 & 3 support
+* Tailwind & utility class support
 * 100% coverage
+* TypeScript support
 * ESM support
 * Fully configurable
 * Single slider
 * Multiple sliders
 * Tooltips
 * Formatting
+* Based on [noUiSlider](https://github.com/leongersen/noUiSlider)
 
 ## Demo 
 
-Check out our [demo](https://jsfiddle.net/u6ty74wz/10/).
+Check out our [demo](https://jsfiddle.net/5yec4xd3/).
 
 ## Installation
 
@@ -145,6 +148,144 @@ After that make sure to change the imported module to Vue 2 version of Slider, a
 import Slider from '@vueform/slider/dist/slider.vue2.js'
 ```
 
+## Styling with CSS vars
+
+The following CSS variables can be used to customize slider when using `default.css`:
+
+``` css
+--slider-bg: #D1D5DB;
+--slider-connect-bg: #10B981;
+--slider-connect-bg-disabled: #9CA3AF;
+--slider-height: 6px;
+--slider-vertical-height: 300px;
+--slider-radius: 9999px;
+
+--slider-handle-bg: #fff;
+--slider-handle-border: 0;
+--slider-handle-width: 16px;
+--slider-handle-height: 16px;
+--slider-handle-radius: 9999px;
+--slider-handle-shadow: 0.5px 0.5px 2px 1px rgba(0,0,0,.32);
+--slider-handle-shadow-active: 0.5px 0.5px 2px 1px rgba(0,0,0,.42);
+--slider-handle-ring-width: 3px;
+--slider-handle-ring-color: #10B98130;
+
+--slider-tooltip-bg: #10B981;
+--slider-tooltip-color: #fff;
+--slider-tooltip-radius: 5px;
+--slider-tooltip-min-width: 20px;
+--slider-tooltip-font-size: 0.875rem;
+--slider-tooltip-line-height: 1.25rem;
+--slider-tooltip-font-weight: 600;
+--slider-tooltip-py: 2px;
+--slider-tooltip-px: 6px;
+--slider-tooltip-arrow-size: 5px;
+--slider-tooltip-distance: 3px;
+```
+
+Override them globally:
+
+``` css
+:root {
+  --slider-connect-bg: #3B82F6;
+  --slider-tooltip-bg: #3B82F6;
+  --slider-handle-ring-color: #3B82F630;
+}
+```
+
+Or on instance level:
+
+``` vue
+<Slider
+  v-model="value"
+  class="slider-red"
+/>
+
+<Slider
+  v-model="value"
+  class="slider-blue"
+/>
+```
+
+``` css
+.slider-red {
+  --slider-connect-bg: #EF4444;
+  --slider-tooltip-bg: #EF4444;
+  --slider-handle-ring-color: #EF444430;
+}
+
+.slider-blue {
+  --slider-connect-bg: #3B82F6;
+  --slider-tooltip-bg: #3B82F6;
+  --slider-handle-ring-color: #3B82F630;
+}
+```
+
+## Styling with Tailwind CSS
+
+To use the slider with Tailwind CSS you must add it as a plugin to `tailwind.config.js`:
+
+``` js
+// tailwind.config.js
+
+module.exports = {
+  // ...
+  plugins: [
+    require('@vueform/slider/tailwind'),
+  ]
+}
+```
+
+This plugin adds certain utilities and variants which are neccessary for the slider but Tailwind does not provide by default.
+
+Once you've installed the plugin you can define utility classes for different parts of slider without having to require `default.css`. Here's a default styling for Tailwind CSS:
+
+``` vue
+<Slider v-model="value" :classes="{
+  target: 'relative box-border user-select-none touch-none tap-highlight-transparent touch-callout-none disabled:cursor-not-allowed',
+  focused: 'slider-focused',
+  tooltipFocus: 'slider-tooltip-focus',
+  tooltipDrag: 'slider-tooltip-drag',
+  ltr: 'slider-ltr',
+  rtl: 'slider-rtl',
+  horizontal: 'slider-horizontal h-1.5',
+  vertical: 'slider-vertical w-1.5 h-80',
+  textDirectionRtl: 'slider-txt-rtl',
+  textDirectionLtr: 'slider-txt-ltr',
+  base: 'w-full h-full relative z-1 bg-gray-300 rounded',
+  connects: 'w-full h-full relative overflow-hidden z-0 rounded',
+  connect: 'absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full bg-green-500 cursor-pointer tap:duration-300 tap:transition-transform disabled:bg-gray-400 disabled:cursor-not-allowed',
+  origin: 'slider-origin absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-1/10 w-1/10 h:h-0 txt-rtl-h:left-0 txt-rtl-h:right-auto v:w-0 tap:duration-300 tap:transition-transform',
+  handle: 'absolute rounded-full bg-white border-0 shadow-slider cursor-grab focus:outline-none h:w-4 h:h-4 h:-top-1.5 h:-right-2 txt-rtl-h:-left-2 txt-rtl-h:right-auto v:w-4 v:h-4 v:-top-2 v:-right-1.25 disabled:cursor-not-allowed focus:ring focus:ring-green-500 focus:ring-opacity-30',
+  touchArea: 'h-full w-full',
+  tooltip: 'absolute block text-sm font-semibold whitespace-nowrap py-1 px-1.5 min-w-5 text-center text-white rounded border border-green-500 bg-green-500 transform h:-translate-x-1/2 h:left-1/2 h:bottom-6 h:arrow-bottom v:-translate-y-1/2 v:top-1/2 v:right-6 v:arrow-right disabled:bg-gray-400 disabled:border-gray-400 merge-h:translate-x-1/2 merge-h:left-auto merge-h:bottom-3.5 merge-v:-translate-x-4 merge-v:top-auto merge-v:right-1 tt-focus:hidden tt-focused:block tt-drag:hidden tt-dragging:block',
+  tooltipHidden: 'slider-tooltip-hidden',
+  active: 'slider-active shadow-slider-active cursor-grabbing',
+  draggable: 'cursor-ew-resize v:cursor-ns-resize',
+  tap: 'slider-state-tap',
+  drag: 'slider-state-drag',
+}" />
+```
+
+There are certain variants that help detecting different states/config of the slider:
+* `h` - applied when the slider is horizontal
+* `v` - applied when the slider is vertical
+* `merge-h` - applied when the slider is horizontal and tooltips are merged
+* `merge-v` - applied when the slider is horizontal and tooltips are merged
+* `disabled` - applied when the slider is disabled
+* `txt-rtl-h` - applied when the slider is horizontal and text direction is set to `rtl`
+* `tap` - applied when the slider bar is being taped to jump to certain position
+* `tt-focus` - applied when the slider should only display tooltips on focus (`showToolip: 'focus'`) and the slider is not focused
+* `tt-focused` - applied when the slider should only display tooltips on focus and the slider is focused
+* `tt-drag` - applied when the slider should only display tooltips on drag (`showToolip: 'drag'`) and the slider is not being dragged
+* `tt-dragging` - applied when the slider should only display tooltips on drag and the slider is being dragged
+
+The `target` class receives `ltr`, `rtl`, `horizontal`, `vertical`, `textDirectionRtl`, `textDirectionLtr`, `focused`, `tooltipFocus`, `tooltipDrag`, `tap`, and `drag` classes when the related state is applied.
+
+Certain classes does not define any styles (like `.slider-horizontal`, `.slider-vertical`) but only required to detect certain states. If you are changing the class list for any class name make sure to always keep the ones that start with `slider-` to be able to use the utilities mentioned above (`h`, `v`, etc).
+
+In case you need to override the same type of utility you might use [@neojp/tailwind-important-variant](https://www.npmjs.com/package/@neojp/tailwindcss-important-variant) and use eg. `bg-green-500!`.
+
 ## Support
 
 Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](https://github.com/vueform/slider/issues).
@@ -159,11 +300,12 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 | **max** | `number` | `100` | Maximum value of the slider. |
 | **step** | `number` | `1` | The jump between intervals. If `-1` it enables fractions (eg. `1.23`). |
 | **tooltips** | `boolean` | `true` | Whether tooltips should show above handlers. |
+| **showTooltip** | `string` | `'always'` | When tooltips should be shown. Possible values: `always\|focus\|drag`. |
 | **merge** | `number` | `-1` | The step distance between two handles when their tooltips should be merged (when `step` is `-1` then `1` is assumed). Eg: <br><br> `{ merge: 5, step: 10 }` <br> -> values: `0, <=50` will merge <br> -> values: `0, 60` will not merge <br><br> `{ merge: 5, step: -1 }` <br> -> values: `0, <=5` will merge <br> -> values: `0, 5.01` will not merge  |
 | **format** | `object\|function` |  | Formats the tooltip. It can be either a function that receives a `value` param and expects a string or number as return or an object with the following properties: <br> `prefix` - eg `$` -> `$100` <br> `suffix` - eg `USD` -> `100USD` <br> `decimals` - eg `2` -> `100.00`  <br> `thousand` - eg `,` - `1,000` |
-| **orientation** | `string` | `'horizontal'` | The orientation of the slider. Possible values: `horizontal|vertical` |
-| **height** | `string` | `'300px'` | The height of the slider when `orientation` is `vertical`. Can have any valid CSS measure suffix. |
-| **direction** | `string` | `'ltr'` | The direction of the slider. By default value increases *left-to-right* and *top-to-bottom*, which is reversed when using `rtl`. Possible values: `ltr|rtl` |
+| **orientation** | `string` | `'horizontal'` | The orientation of the slider. Possible values: `horizontal\|vertical` |
+| **direction** | `string` | `'ltr'` | The direction of the slider. By default value increases *left-to-right* and *top-to-bottom*, which is reversed when using `rtl`. Possible values: `ltr\|rtl` |
+| **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`handleUpper: 'slider-handle-upper',`<br>&nbsp;&nbsp;`handleLower: 'slider-handle-lower',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
 
 ## Events
 
@@ -201,7 +343,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 </script>
 ```
 
-[JSFiddle - Example #1](https://jsfiddle.net/u6ty74wz/10/)
+[JSFiddle - Example #1](https://jsfiddle.net/5yec4xd3/)
 
 ### Multiple slider
 
@@ -224,7 +366,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 </script>
 ```
 
-[JSFiddle - Example #2](https://jsfiddle.net/u6ty74wz/10/)
+[JSFiddle - Example #2](https://jsfiddle.net/5yec4xd3/)
 
 ### Tooltip formatting
 
@@ -244,14 +386,14 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
     data: () => ({
       value: 20,
       format: function (value) {
-        return `€${value}`
+        return `€${Math.round(value)}`
       }
     })
   }
 </script>
 ```
 
-[JSFiddle - Example #3](https://jsfiddle.net/u6ty74wz/10/)
+[JSFiddle - Example #3](https://jsfiddle.net/5yec4xd3/)
 
 ### Tooltip merging
 
@@ -281,7 +423,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 </script>
 ```
 
-[JSFiddle - Example #4](https://jsfiddle.net/u6ty74wz/10/)
+[JSFiddle - Example #4](https://jsfiddle.net/5yec4xd3/)
 
 ### Vertical slider
 
@@ -306,7 +448,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 </script>
 ```
 
-[JSFiddle - Example #5](https://jsfiddle.net/u6ty74wz/10/)
+[JSFiddle - Example #5](https://jsfiddle.net/5yec4xd3/)
 
 ## About Vueform
 

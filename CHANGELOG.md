@@ -1,3 +1,13 @@
+## v2.0.0
+
+> `2021-06-24`
+
+### 🎉 Features
+  - **BREAKING**: removed `height` prop & rewritten `default.css`.
+  - Added `classes` prop.
+  - Added CSS vars.
+  - `id` no longer defaults to `undefined` instead of `slider`.
+  
 ## v1.0.5
 
 > `2021-04-09`
