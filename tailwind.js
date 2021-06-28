@@ -100,6 +100,43 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
       return `[disabled] .${e(`disabled${separator}${className}`)}`
     })
   })
+
+  addVariant('tt-focus', ({ container, separator }) => {
+    container.walkRules(rule => {
+      rule.selector = `.slider-tooltip-focus:not(.slider-focused) .${e(`tt-focus${separator}${rule.selector.slice(1)}`)}`
+      rule.walkDecls(decl => {
+        decl.important = true
+      })
+    })
+  })
+
+  addVariant('tt-focused', ({ container, separator }) => {
+    container.walkRules(rule => {
+      rule.selector = `.slider-tooltip-focus.slider-focused .${e(`tt-focused${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`)}`
+      rule.walkDecls(decl => {
+        decl.important = true
+      })
+    })
+  })
+
+  addVariant('tt-drag', ({ container, separator }) => {
+    container.walkRules(rule => {
+      rule.selector = `.slider-tooltip-drag:not(.slider-state-drag) .${e(`tt-drag${separator}${rule.selector.slice(1)}`)}`
+      rule.walkDecls(decl => {
+        decl.important = true
+      })
+    })
+  })
+
+  addVariant('tt-dragging', ({ container, separator }) => {
+    container.walkRules(rule => {
+      rule.selector = `.slider-tooltip-drag.slider-state-drag .${e(`tt-dragging${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`)},
+                        .slider-tooltip-drag .slider-active .${e(`tt-dragging${separator}${rule.selector.slice(1)}`)}`
+      rule.walkDecls(decl => {
+        decl.important = true
+      })
+    })
+  })
 }, {
   variants: {
     extend: {
@@ -112,6 +149,7 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
       translate: ['h', 'v', 'merge-h', 'merge-v'],
       transitionProperty: ['tap'],
       transitionDuration: ['tap'],
+      display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging']
     }
   },
   theme: {
