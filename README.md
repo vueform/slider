@@ -22,7 +22,7 @@
     <img alt="npm" src="https://img.shields.io/npm/v/@vueform/slider">
   </a>
 
-  <h1>Vue 3 Slider with Tailwind support</h1>
+  <h1>Vue 3 Slider</h1>
   
   <a href="https://vueform.com?ref=github" target="_blank">
     <br>
@@ -47,13 +47,12 @@
 
 ## Other libraries
 
-* [@vueform/multiselect](https://github.com/vueform/multiselect) - Vue 3 multiselect component with tagging options & Tailwind support.
-* [@vueform/toggle](https://github.com/vueform/toggle) - Vue 3 toggle component with custom labels & Tailwind support.
+* [@vueform/multiselect](https://github.com/vueform/multiselect) - Vue 3 multiselect component with single select, multiselect and tagging options.
+* [@vueform/toggle](https://github.com/vueform/toggle) - Vue 3 toggle component with labels, custom slots and styling options.
 
 ## Slider features
 
 * Vue 2 & 3 support
-* Tailwind & utility class support
 * 100% coverage
 * TypeScript support
 * ESM support
@@ -62,6 +61,8 @@
 * Multiple sliders
 * Tooltips
 * Formatting
+* CSS vars support
+* Tailwind & utility class support
 * Based on [noUiSlider](https://github.com/leongersen/noUiSlider)
 
 ## Demo 
