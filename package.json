@@ -67,7 +67,7 @@
     "not dead"
   ],
   "dependencies": {
-    "nouislider": "^14.6.3",
+    "nouislider": "^15.4.0",
     "wnumb": "^1.2.0"
   }
 }
