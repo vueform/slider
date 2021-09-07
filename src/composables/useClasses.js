@@ -2,8 +2,9 @@ import { computed, ref, toRefs } from 'composition-api'
 
 export default function useClasses (props, context, dependencies)
 {
-  const refs = toRefs(props)
-  const showTooltip = ref(refs.showTooltip)
+  const { 
+    classes: classes_, showTooltip, tooltipDirection, orientation,
+  } = toRefs(props)
 
   // ============== COMPUTED ==============
 
@@ -27,6 +28,10 @@ export default function useClasses (props, context, dependencies)
     handleLower: 'slider-handle-lower',
     touchArea: 'slider-touch-area',
     tooltip: 'slider-tooltip',
+    tooltipTop: 'slider-tooltip-top',
+    tooltipBottom: 'slider-tooltip-bottom',
+    tooltipLeft: 'slider-tooltip-left',
+    tooltipRight: 'slider-tooltip-right',
     tooltipHidden: 'slider-tooltip-hidden',
     active: 'slider-active',
     draggable: 'slider-draggable',
@@ -50,7 +55,7 @@ export default function useClasses (props, context, dependencies)
     valueLarge: 'slider-value-large',
     valueSub: 'slider-value-sub',
     
-    ...refs.classes.value,
+    ...classes_.value,
   }))
 
   const classList = computed(() => {
@@ -58,6 +63,14 @@ export default function useClasses (props, context, dependencies)
 
     if (showTooltip.value !== 'always') {
       classList.target += ` ${showTooltip.value === 'drag' ? classList.tooltipDrag : classList.tooltipFocus}`
+    }
+
+    if (orientation.value === 'horizontal') {
+      classList.tooltip += tooltipDirection.value === 'bottom' ? ` ${classList.tooltipBottom}` : ` ${classList.tooltipTop}`
+    }
+
+    if (orientation.value === 'vertical') {
+      classList.tooltip += tooltipDirection.value === 'right' ? ` ${classList.tooltipRight}` : ` ${classList.tooltipLeft}`
     }
 
     return classList

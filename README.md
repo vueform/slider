@@ -168,8 +168,9 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 | **format** | `object\|function` |  | Formats the tooltip. It can be either a function that receives a `value` param and expects a string or number as return or an object with the following properties: <br> `prefix` - eg `$` -> `$100` <br> `suffix` - eg `USD` -> `100USD` <br> `decimals` - eg `2` -> `100.00`  <br> `thousand` - eg `,` - `1,000` |
 | **orientation** | `string` | `'horizontal'` | The orientation of the slider. Possible values: `horizontal\|vertical` |
 | **direction** | `string` | `'ltr'` | The direction of the slider. By default value increases *left-to-right* and *top-to-bottom*, which is reversed when using `rtl`. Possible values: `ltr\|rtl` |
+| **tooltipDirection** | `string` | `null` | The direction of the slider tooltips. Possible values: `null\|'top'\|'bottom'\|'left'\|'right'` depending on `orientation` prop. When `null` it equals to `orientation` default (`'top'` for `'horizontal'` and `'left'` for `'vertical'`). |
 | **options** | `object` | `{}` | Additional [options](https://refreshless.com/nouislider/slider-options/) for noUiSlider. |
-| **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`handleUpper: 'slider-handle-upper',`<br>&nbsp;&nbsp;`handleLower: 'slider-handle-lower',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
+| **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`handleUpper: 'slider-handle-upper',`<br>&nbsp;&nbsp;`handleLower: 'slider-handle-lower',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`tooltipTop: 'slider-tooltip-top',`<br>&nbsp;&nbsp;`tooltipBottom: 'slider-tooltip-bottom',`<br>&nbsp;&nbsp;`tooltipLeft: 'slider-tooltip-left',`<br>&nbsp;&nbsp;`tooltipRight: 'slider-tooltip-right',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
 
 ## Events
 
@@ -288,7 +289,11 @@ Once you've installed the plugin you can define utility classes for different pa
   origin: 'slider-origin absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-1/10 w-1/10 h:h-0 txt-rtl-h:left-0 txt-rtl-h:right-auto v:w-0 tap:duration-300 tap:transition-transform',
   handle: 'absolute rounded-full bg-white border-0 shadow-slider cursor-grab focus:outline-none h:w-4 h:h-4 h:-top-1.5 h:-right-2 txt-rtl-h:-left-2 txt-rtl-h:right-auto v:w-4 v:h-4 v:-top-2 v:-right-1.25 disabled:cursor-not-allowed focus:ring focus:ring-green-500 focus:ring-opacity-30',
   touchArea: 'h-full w-full',
-  tooltip: 'absolute block text-sm font-semibold whitespace-nowrap py-1 px-1.5 min-w-5 text-center text-white rounded border border-green-500 bg-green-500 transform h:-translate-x-1/2 h:left-1/2 h:bottom-6 h:arrow-bottom v:-translate-y-1/2 v:top-1/2 v:right-6 v:arrow-right disabled:bg-gray-400 disabled:border-gray-400 merge-h:translate-x-1/2 merge-h:left-auto merge-h:bottom-3.5 merge-v:-translate-x-4 merge-v:top-auto merge-v:right-1 tt-focus:hidden tt-focused:block tt-drag:hidden tt-dragging:block',
+  tooltip: 'absolute block text-sm font-semibold whitespace-nowrap py-1 px-1.5 min-w-5 text-center text-white rounded border border-green-500 bg-green-500 transform h:-translate-x-1/2 h:left-1/2 v:-translate-y-1/2 v:top-1/2 disabled:bg-gray-400 disabled:border-gray-400 merge-h:translate-x-1/2 merge-h:left-auto merge-v:-translate-x-4 merge-v:top-auto tt-focus:hidden tt-focused:block tt-drag:hidden tt-dragging:block',
+  tooltipTop: 'bottom-6 h:arrow-bottom merge-h:bottom-3.5',
+  tooltipBottom: 'top-6 h:arrow-top merge-h:top-5',
+  tooltipLeft: 'right-6 v:arrow-right merge-v:right-1',
+  tooltipRight: 'left-6 v:arrow-left merge-v:left-7',
   tooltipHidden: 'slider-tooltip-hidden',
   active: 'slider-active shadow-slider-active cursor-grabbing',
   draggable: 'cursor-ew-resize v:cursor-ns-resize',
@@ -312,7 +317,7 @@ There are certain variants that help detecting different states/config of the sl
 
 The `target` class receives `ltr`, `rtl`, `horizontal`, `vertical`, `textDirectionRtl`, `textDirectionLtr`, `focused`, `tooltipFocus`, `tooltipDrag`, `tap`, and `drag` classes when the related state is applied.
 
-Certain classes does not define any styles (like `.slider-horizontal`, `.slider-vertical`) but only required to detect certain states. If you are changing the class list for any class name make sure to always keep the ones that start with `slider-` to be able to use the utilities mentioned above (`h`, `v`, etc).
+Certain classes do not define any styles (like `.slider-horizontal`, `.slider-vertical`) but only required to detect certain states. If you are changing the class list for any class name make sure to always keep the ones that start with `slider-` to be able to use the utilities mentioned above (`h`, `v`, etc).
 
 In case you need to override the same type of utility you might use [@neojp/tailwind-important-variant](https://www.npmjs.com/package/@neojp/tailwindcss-important-variant) and use eg. `bg-green-500!`.
 

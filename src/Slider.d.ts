@@ -16,6 +16,8 @@ declare class Slider extends Vue {
   format?: any;
   classes?: object;
   showTooltip?: 'always'|'focus'|'drag';
+  options?: object;
+  tooltipDirection?: null|'top'|'bottom'|'left'|'right';
 
   $emit(eventName: 'change', e: {originalEvent: Event, value: any}): this;
   $emit(eventName: 'update', e: {originalEvent: Event, value: any}): this;

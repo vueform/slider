@@ -94,7 +94,12 @@
         type: String,
         required: false,
         default: 'always'
-      }
+      },
+      tooltipDirection: {
+        type: String,
+        required: false,
+        default: null,
+      },
     },
     setup(props, context)
     {
