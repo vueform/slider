@@ -4,7 +4,10 @@ export default function useClasses (props, context, dependencies)
 {
   const refs = toRefs(props)
   const showTooltip = ref(refs.showTooltip)
-  const classes = {
+
+  // ============== COMPUTED ==============
+
+  const classes = computed(() => ({
     target: 'slider-target',
     focused: 'slider-focused',
     tooltipFocus: 'slider-tooltip-focus',
@@ -29,13 +32,29 @@ export default function useClasses (props, context, dependencies)
     draggable: 'slider-draggable',
     tap: 'slider-state-tap',
     drag: 'slider-state-drag',
-    ...refs.classes.value,
-  }
 
-  // ============== COMPUTED ==============
+    // Unimplemented
+    pips: 'slider-pips',
+    pipsHorizontal: 'slider-pips-horizontal',
+    pipsVertical: 'slider-pips-vertical',
+    marker: 'slider-marker',
+    markerHorizontal: 'slider-marker-horizontal',
+    markerVertical: 'slider-marker-vertical',
+    markerNormal: 'slider-marker-normal',
+    markerLarge: 'slider-marker-large',
+    markerSub: 'slider-marker-sub',
+    value: 'slider-value',
+    valueHorizontal: 'slider-value-horizontal',
+    valueVertical: 'slider-value-vertical',
+    valueNormal: 'slider-value-normal',
+    valueLarge: 'slider-value-large',
+    valueSub: 'slider-value-sub',
+    
+    ...refs.classes.value,
+  }))
 
   const classList = computed(() => {
-    const classList = { ...classes }
+    const classList = { ...classes.value }
 
     if (showTooltip.value !== 'always') {
       classList.target += ` ${showTooltip.value === 'drag' ? classList.tooltipDrag : classList.tooltipFocus}`
