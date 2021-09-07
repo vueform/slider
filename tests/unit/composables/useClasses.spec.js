@@ -30,21 +30,21 @@ describe('useClasses', () => {
       expect(slider.vm.classList.tooltip.indexOf(slider.vm.classList.tooltipTop) !== -1).toBe(true)
     })
 
-    it('should add tooltipBottom when orientation=horizontal & tooltipDirection=bottom', () => {
+    it('should add tooltipBottom when orientation=horizontal & tooltipPosition=bottom', () => {
       const slider = createSlider({
         value: 5,
         orientation: 'horizontal',
-        tooltipDirection: 'bottom'
+        tooltipPosition: 'bottom'
       })
 
       expect(slider.vm.classList.tooltip.indexOf(slider.vm.classList.tooltipBottom) !== -1).toBe(true)
     })
 
-    it('should add tooltipTop when orientation=horizontal & tooltipDirection=left', () => {
+    it('should add tooltipTop when orientation=horizontal & tooltipPosition=left', () => {
       const slider = createSlider({
         value: 5,
         orientation: 'horizontal',
-        tooltipDirection: 'left'
+        tooltipPosition: 'left'
       })
 
       expect(slider.vm.classList.tooltip.indexOf(slider.vm.classList.tooltipTop) !== -1).toBe(true)
@@ -59,21 +59,21 @@ describe('useClasses', () => {
       expect(slider.vm.classList.tooltip.indexOf(slider.vm.classList.tooltipLeft) !== -1).toBe(true)
     })
 
-    it('should add tooltipRight when orientation=vertical & tooltipDirection=right', () => {
+    it('should add tooltipRight when orientation=vertical & tooltipPosition=right', () => {
       const slider = createSlider({
         value: 5,
         orientation: 'vertical',
-        tooltipDirection: 'right'
+        tooltipPosition: 'right'
       })
 
       expect(slider.vm.classList.tooltip.indexOf(slider.vm.classList.tooltipRight) !== -1).toBe(true)
     })
 
-    it('should add tooltipLeft when orientation=vertical & tooltipDirection=top', () => {
+    it('should add tooltipLeft when orientation=vertical & tooltipPosition=top', () => {
       const slider = createSlider({
         value: 5,
         orientation: 'vertical',
-        tooltipDirection: 'top'
+        tooltipPosition: 'top'
       })
 
       expect(slider.vm.classList.tooltip.indexOf(slider.vm.classList.tooltipLeft) !== -1).toBe(true)

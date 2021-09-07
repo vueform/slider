@@ -95,7 +95,7 @@
         required: false,
         default: 'always'
       },
-      tooltipDirection: {
+      tooltipPosition: {
         type: String,
         required: false,
         default: null,

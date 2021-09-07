@@ -1,3 +1,15 @@
+## v2.0.5
+
+> `2021-09-07`
+
+### 🎉 Features
+  - Updated to latest `nouislider`.
+  - Added `tooltipPosition` prop [#23](https://github.com/vueform/slider/issues/23).
+  - Added `options` prop.
+
+### 🐞 Bug Fixes
+  - Update `classList` on `classes` change.
+
 ## v2.0.4
 
 > `2021-08-02`

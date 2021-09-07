@@ -3,7 +3,7 @@ import { computed, ref, toRefs } from 'composition-api'
 export default function useClasses (props, context, dependencies)
 {
   const { 
-    classes: classes_, showTooltip, tooltipDirection, orientation,
+    classes: classes_, showTooltip, tooltipPosition, orientation,
   } = toRefs(props)
 
   // ============== COMPUTED ==============
@@ -66,11 +66,11 @@ export default function useClasses (props, context, dependencies)
     }
 
     if (orientation.value === 'horizontal') {
-      classList.tooltip += tooltipDirection.value === 'bottom' ? ` ${classList.tooltipBottom}` : ` ${classList.tooltipTop}`
+      classList.tooltip += tooltipPosition.value === 'bottom' ? ` ${classList.tooltipBottom}` : ` ${classList.tooltipTop}`
     }
 
     if (orientation.value === 'vertical') {
-      classList.tooltip += tooltipDirection.value === 'right' ? ` ${classList.tooltipRight}` : ` ${classList.tooltipLeft}`
+      classList.tooltip += tooltipPosition.value === 'right' ? ` ${classList.tooltipRight}` : ` ${classList.tooltipLeft}`
     }
 
     return classList
