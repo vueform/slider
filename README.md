@@ -149,6 +149,35 @@ After that make sure to change the imported module to Vue 2 version of Slider, a
 import Slider from '@vueform/slider/dist/slider.vue2.js'
 ```
 
+## Support
+
+Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](https://github.com/vueform/slider/issues).
+
+## Basic props
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| **id** | `string` | `slider` | The `id` attribute of slider container DOM. |
+| **disabled** | `boolean` | `false` | Whether the slider should be disabled. |
+| **min** | `number` | `0` | Minimum value of the slider. |
+| **max** | `number` | `100` | Maximum value of the slider. |
+| **step** | `number` | `1` | The jump between intervals. If `-1` it enables fractions (eg. `1.23`). |
+| **tooltips** | `boolean` | `true` | Whether tooltips should show above handlers. |
+| **showTooltip** | `string` | `'always'` | When tooltips should be shown. Possible values: `always\|focus\|drag`. |
+| **merge** | `number` | `-1` | The step distance between two handles when their tooltips should be merged (when `step` is `-1` then `1` is assumed). Eg: <br><br> `{ merge: 5, step: 10 }` <br> -> values: `0, <=50` will merge <br> -> values: `0, 60` will not merge <br><br> `{ merge: 5, step: -1 }` <br> -> values: `0, <=5` will merge <br> -> values: `0, 5.01` will not merge  |
+| **format** | `object\|function` |  | Formats the tooltip. It can be either a function that receives a `value` param and expects a string or number as return or an object with the following properties: <br> `prefix` - eg `$` -> `$100` <br> `suffix` - eg `USD` -> `100USD` <br> `decimals` - eg `2` -> `100.00`  <br> `thousand` - eg `,` - `1,000` |
+| **orientation** | `string` | `'horizontal'` | The orientation of the slider. Possible values: `horizontal\|vertical` |
+| **direction** | `string` | `'ltr'` | The direction of the slider. By default value increases *left-to-right* and *top-to-bottom*, which is reversed when using `rtl`. Possible values: `ltr\|rtl` |
+| **options** | `object` | `{}` | Additional [options](https://refreshless.com/nouislider/slider-options/) for noUiSlider. |
+| **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`handleUpper: 'slider-handle-upper',`<br>&nbsp;&nbsp;`handleLower: 'slider-handle-lower',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
+
+## Events
+
+| Event | Attributes | Description |
+| --- | --- | --- |
+| **@change** | `value` | Emitted when dragging the slider is finished or it's value changed by clicking, keyboard or programmatical set. |
+| **@update** | `value` | Emitted in the same scenarios as changed, but also when the slider is being dragged. |
+
 ## Styling with CSS vars
 
 The following CSS variables can be used to customize slider when using `default.css`:
@@ -286,34 +315,6 @@ The `target` class receives `ltr`, `rtl`, `horizontal`, `vertical`, `textDirecti
 Certain classes does not define any styles (like `.slider-horizontal`, `.slider-vertical`) but only required to detect certain states. If you are changing the class list for any class name make sure to always keep the ones that start with `slider-` to be able to use the utilities mentioned above (`h`, `v`, etc).
 
 In case you need to override the same type of utility you might use [@neojp/tailwind-important-variant](https://www.npmjs.com/package/@neojp/tailwindcss-important-variant) and use eg. `bg-green-500!`.
-
-## Support
-
-Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](https://github.com/vueform/slider/issues).
-
-## Basic props
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| **id** | `string` | `slider` | The `id` attribute of slider container DOM. |
-| **disabled** | `boolean` | `false` | Whether the slider should be disabled. |
-| **min** | `number` | `0` | Minimum value of the slider. |
-| **max** | `number` | `100` | Maximum value of the slider. |
-| **step** | `number` | `1` | The jump between intervals. If `-1` it enables fractions (eg. `1.23`). |
-| **tooltips** | `boolean` | `true` | Whether tooltips should show above handlers. |
-| **showTooltip** | `string` | `'always'` | When tooltips should be shown. Possible values: `always\|focus\|drag`. |
-| **merge** | `number` | `-1` | The step distance between two handles when their tooltips should be merged (when `step` is `-1` then `1` is assumed). Eg: <br><br> `{ merge: 5, step: 10 }` <br> -> values: `0, <=50` will merge <br> -> values: `0, 60` will not merge <br><br> `{ merge: 5, step: -1 }` <br> -> values: `0, <=5` will merge <br> -> values: `0, 5.01` will not merge  |
-| **format** | `object\|function` |  | Formats the tooltip. It can be either a function that receives a `value` param and expects a string or number as return or an object with the following properties: <br> `prefix` - eg `$` -> `$100` <br> `suffix` - eg `USD` -> `100USD` <br> `decimals` - eg `2` -> `100.00`  <br> `thousand` - eg `,` - `1,000` |
-| **orientation** | `string` | `'horizontal'` | The orientation of the slider. Possible values: `horizontal\|vertical` |
-| **direction** | `string` | `'ltr'` | The direction of the slider. By default value increases *left-to-right* and *top-to-bottom*, which is reversed when using `rtl`. Possible values: `ltr\|rtl` |
-| **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`handleUpper: 'slider-handle-upper',`<br>&nbsp;&nbsp;`handleLower: 'slider-handle-lower',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
-
-## Events
-
-| Event | Attributes | Description |
-| --- | --- | --- |
-| **@change** | `value` | Emitted when dragging the slider is finished or it's value changed by clicking, keyboard or programmatical set. |
-| **@update** | `value` | Emitted in the same scenarios as changed, but also when the slider is being dragged. |
 
 ## Examples
 

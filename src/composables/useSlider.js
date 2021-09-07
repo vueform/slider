@@ -7,14 +7,9 @@ export default function useSlider (props, context, dependencies)
 {
   const {
     orientation, direction, tooltips, step,
-    min, max, merge, id, disabled
+    min, max, merge, id, disabled, options,
+    classes, format,
   } = toRefs(props)
-
-  const options = reactive(props.options)
-  const classes = reactive(props.classes)
-  const format = props.format && typeof props.format == 'object'
-    ? reactive(props.format)
-    : ref(props.format)
 
   // ============ DEPENDENCIES ============
 
@@ -105,7 +100,7 @@ export default function useSlider (props, context, dependencies)
   }
 
   const init = () => {
-    slider$.value = nouislider.create(slider.value, Object.assign({}, defaultOptions.value, options))
+    slider$.value = nouislider.create(slider.value, Object.assign({}, defaultOptions.value, options.value))
 
     if (tooltips.value && isRange.value && merge.value >= 0) {
       tooltipsMerge(slider.value, merge.value, ' - ')
