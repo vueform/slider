@@ -3,6 +3,7 @@
 > `2021-09-07`
 
 ### 🎉 Features
+  - **BREAKING**: updated `default.css` classes and `classes` object in general. Please update to the latest, extended version.
   - Updated to latest `nouislider`.
   - Added `tooltipPosition` prop [#23](https://github.com/vueform/slider/issues/23).
   - Added `options` prop.
