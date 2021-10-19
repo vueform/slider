@@ -130,7 +130,7 @@ import Slider from '@vueform/slider/dist/slider.vue2.js'
 First you need install [@nuxtjs/composition-api](https://composition-api.nuxtjs.org/getting-started/setup):
 
 ``` bash
-npm i @nuxtjs/composition-api --save-dev
+npm i @nuxtjs/composition-api --save
 ```
 
 Then you need to enable it as a module in `nuxt.config.js`:
@@ -138,16 +138,18 @@ Then you need to enable it as a module in `nuxt.config.js`:
 ``` js
 {
   buildModules: [
-    '@nuxtjs/composition-api'
+    '@nuxtjs/composition-api/module'
   ]
 }
 ```
 
-After that make sure to change the imported module to Vue 2 version of Slider, as Nuxt.js still depends on that:
+After that make sure to change the imported module to Vue 2 version of Slider:
 
 ``` js
-import Slider from '@vueform/slider/dist/slider.vue2.js'
+import Slider from '@vueform/slider/dist/slider.vue2'
 ```
+
+For more information on using `@nuxtjs/composition-api` read [their documentation](https://composition-api.nuxtjs.org/).
 
 ## Support
 
@@ -201,13 +203,14 @@ The following CSS variables can be used to customize slider when using `default.
 --slider-handle-ring-width: 3px;
 --slider-handle-ring-color: #10B98130;
 
---slider-tooltip-bg: #10B981;
---slider-tooltip-color: #fff;
---slider-tooltip-radius: 5px;
---slider-tooltip-min-width: 20px;
 --slider-tooltip-font-size: 0.875rem;
 --slider-tooltip-line-height: 1.25rem;
 --slider-tooltip-font-weight: 600;
+--slider-tooltip-min-width: 20px;
+--slider-tooltip-bg: #10B981;
+--slider-tooltip-bg-disabled: #9CA3AF;
+--slider-tooltip-color: #fff;
+--slider-tooltip-radius: 5px;
 --slider-tooltip-py: 2px;
 --slider-tooltip-px: 6px;
 --slider-tooltip-arrow-size: 5px;
