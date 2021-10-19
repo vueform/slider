@@ -13,3 +13,4 @@ tests/
 .gitignore
 babel.config.js
 CODE_OF_CONDUCT.md
+package-lock.json
