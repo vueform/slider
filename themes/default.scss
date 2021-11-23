@@ -36,21 +36,13 @@
   z-index: 1;
   top: 0;
   right: 0;
+	height: 100%;
+	width: 100%;
   -ms-transform-origin: 0 0;
   -webkit-transform-origin: 0 0;
   -webkit-transform-style: preserve-3d;
   transform-origin: 0 0;
   transform-style: flat;
-}
-
-.slider-connect {
-  height: 100%;
-  width: 100%;
-}
-
-.slider-origin {
-  height: 10%;
-  width: 10%;
 }
 
 .slider-txt-dir-rtl.slider-horizontal .slider-origin {
@@ -59,7 +51,8 @@
 }
 
 .slider-vertical .slider-origin {
-  width: 0;
+  top: -100%;
+	width: 0;
 }
 
 .slider-horizontal .slider-origin {
@@ -117,8 +110,8 @@
 .slider-vertical .slider-handle {
   width: var(--slider-handle-height, 16px);
   height: var(--slider-handle-width, 16px);
-  top: calc(var(--slider-handle-width, 16px) / 2 * -1);
   right: calc(((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2 + 1px) * -1);
+  bottom: calc(var(--slider-handle-width, 16px) / 2 * -1);
 }
 
 .slider-txt-dir-rtl.slider-horizontal .slider-handle {
