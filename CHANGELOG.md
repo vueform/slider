@@ -1,3 +1,17 @@
+## v2.0.7
+
+> `2021-11-23`
+
+### 🐞 Bug Fixes
+  - Resolved `devDependencies` conflict.
+
+## v2.0.6
+
+> `2021-11-23`
+
+### 🎉 Features
+  - Followed up `nouislider` CSS changes.
+
 ## v2.0.5
 
 > `2021-09-07`
