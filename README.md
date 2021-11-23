@@ -67,7 +67,7 @@
 
 ## Demo 
 
-Check out our [demo](https://jsfiddle.net/5yec4xd3/).
+Check out our [demo](https://jsfiddle.net/0Lp1bqyv/).
 
 ## Installation
 
@@ -353,7 +353,7 @@ In case you need to override the same type of utility you might use [@neojp/tail
 </script>
 ```
 
-[JSFiddle - Example #1](https://jsfiddle.net/5yec4xd3/)
+[JSFiddle - Example #1](https://jsfiddle.net/0Lp1bqyv/)
 
 ### Multiple slider
 
@@ -376,7 +376,7 @@ In case you need to override the same type of utility you might use [@neojp/tail
 </script>
 ```
 
-[JSFiddle - Example #2](https://jsfiddle.net/5yec4xd3/)
+[JSFiddle - Example #2](https://jsfiddle.net/0Lp1bqyv/)
 
 ### Tooltip formatting
 
@@ -403,7 +403,7 @@ In case you need to override the same type of utility you might use [@neojp/tail
 </script>
 ```
 
-[JSFiddle - Example #3](https://jsfiddle.net/5yec4xd3/)
+[JSFiddle - Example #3](https://jsfiddle.net/0Lp1bqyv/)
 
 ### Tooltip merging
 
@@ -433,7 +433,7 @@ In case you need to override the same type of utility you might use [@neojp/tail
 </script>
 ```
 
-[JSFiddle - Example #4](https://jsfiddle.net/5yec4xd3/)
+[JSFiddle - Example #4](https://jsfiddle.net/0Lp1bqyv/)
 
 ### Vertical slider
 
@@ -458,7 +458,7 @@ In case you need to override the same type of utility you might use [@neojp/tail
 </script>
 ```
 
-[JSFiddle - Example #5](https://jsfiddle.net/5yec4xd3/)
+[JSFiddle - Example #5](https://jsfiddle.net/0Lp1bqyv/)
 
 ## About Vueform
 
