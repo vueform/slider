@@ -486,14 +486,6 @@ In case you need to override the same type of utility you might use [@neojp/tail
 
 [JSFiddle - Example #5](https://jsfiddle.net/0Lp1bqyv/)
 
-## About Vueform
-
-Vueform is a comprehensive form builder for Vue.js that makes form development a breeze. It supercharges and standardizes the entire form building process and takes care of everything from rendering to validation and processing.
-
-Vueform pre-release is open for registration for the first 100 developers.
-
-Learn more: [https://vueform.com](https://vueform.com)
-
 ## License
 
 [MIT](https://github.com/vueform/slider/blob/main/LICENSE.md)
