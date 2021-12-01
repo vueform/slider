@@ -177,10 +177,6 @@ For more information on using `@nuxtjs/composition-api` read [their documentatio
 
 Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](https://github.com/vueform/slider/issues).
 
-<a href="https://vueform.com?ref=ghb">
-  <img align="center" src="https://github.com/vueform/multiselect/raw/main/assets/vueform-banner.png" alt="Vueform" title="Vueform">
-</a>
-
 ## Basic props
 
 | Name | Type | Default | Description |
@@ -199,6 +195,10 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 | **tooltipPosition** | `string` | `null` | The position of the slider tooltips. Possible values: `null\|'top'\|'bottom'\|'left'\|'right'` depending on `orientation` prop. When `null` it equals to `orientation` default (`'top'` for `'horizontal'` and `'left'` for `'vertical'`). |
 | **options** | `object` | `{}` | Additional [options](https://refreshless.com/nouislider/slider-options/) for noUiSlider. |
 | **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`handleUpper: 'slider-handle-upper',`<br>&nbsp;&nbsp;`handleLower: 'slider-handle-lower',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`tooltipTop: 'slider-tooltip-top',`<br>&nbsp;&nbsp;`tooltipBottom: 'slider-tooltip-bottom',`<br>&nbsp;&nbsp;`tooltipLeft: 'slider-tooltip-left',`<br>&nbsp;&nbsp;`tooltipRight: 'slider-tooltip-right',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
+
+<a href="https://vueform.com?ref=ghb">
+  <img align="center" src="https://github.com/vueform/multiselect/raw/main/assets/vueform-banner.png" alt="Vueform" title="Vueform">
+</a>
 
 ## Events
 
