@@ -24,8 +24,6 @@ export default function useClasses (props, context, dependencies)
     connect: 'slider-connect',
     origin: 'slider-origin',
     handle: 'slider-handle',
-    handleUpper: 'slider-handle-upper',
-    handleLower: 'slider-handle-lower',
     touchArea: 'slider-touch-area',
     tooltip: 'slider-tooltip',
     tooltipTop: 'slider-tooltip-top',
