@@ -142,14 +142,77 @@ describe('useSlider', () => {
       expect(slider.emitted('change')[0][0]).toBe(20)
     })
 
-    it('should emit update on slider update event', async () => {
+    it('should emit change external value set event if lazy', async () => {
       const slider = createSlider({
         value: 5
       })
 
       slider.vm.slider$.set(20)
 
+      expect(slider.emitted('change')[0][0]).toBe(20)
+      await nextTick()
+      expect(getValue(slider)).toBe(20)
+    })
+
+    it('should emit update on slider update event if not lazy', async () => {
+      const slider = createSlider({
+        value: 5,
+        lazy: false
+      })
+
+      slider.vm.slider$.set(20, false)
+
       expect(slider.emitted('update')[0][0]).toBe(20)
+      await nextTick()
+      expect(getValue(slider)).toBe(20)
+    })
+
+    it('should not emit update on slider update event if lazy', async () => {
+      const slider = createSlider({
+        value: 5,
+      })
+
+      slider.vm.slider$.set(20, false)
+
+      expect(slider.emitted('update')).toBeFalsy()
+      await nextTick()
+      expect(getValue(slider)).toBe(5)
+    })
+
+    it('should emit update on slider update event if value has not changed', async () => {
+      const slider = createSlider({
+        value: 5,
+      })
+
+      slider.vm.slider$.set(5, false)
+
+      expect(slider.emitted('update')[0][0]).toBe(5)
+      await nextTick()
+      expect(getValue(slider)).toBe(5)
+    })
+
+    it('should emit update on slider update event if value has not changed and its an array', async () => {
+      const slider = createSlider({
+        value: [5, 10],
+      })
+
+      slider.vm.slider$.set([5, 10], false)
+
+      expect(slider.emitted('update')[0][0]).toStrictEqual([5, 10])
+      await nextTick()
+      expect(getValue(slider)).toStrictEqual([5, 10])
+    })
+
+    it('should emit update on slider update event if value has changed and its an array', async () => {
+      const slider = createSlider({
+        value: [5, 10],
+      })
+
+      slider.vm.slider$.set([5, 10], false)
+
+      expect(slider.emitted('update')[0][0]).toStrictEqual([5, 10])
+      await nextTick()
+      expect(getValue(slider)).toStrictEqual([5, 10])
     })
 
     it('should add focused class on handle focus', async () => {

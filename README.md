@@ -182,6 +182,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | **id** | `string` | `slider` | The `id` attribute of slider container DOM. |
+| **lazy** | `boolean` | `true` | Whether to update `v-model` only when the slider value is set and not while dragging. If enabled you must not use inline objects as props (eg. `format`, `options`, `classes`) but outsource them to a data property. |
 | **disabled** | `boolean` | `false` | Whether the slider should be disabled. |
 | **min** | `number` | `0` | Minimum value of the slider. |
 | **max** | `number` | `100` | Maximum value of the slider. |
@@ -205,7 +206,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 | Event | Attributes | Description |
 | --- | --- | --- |
 | **@change** | `value` | Emitted when dragging the slider is finished or it's value changed by clicking, keyboard or programmatical set. |
-| **@update** | `value` | Emitted in the same scenarios as changed, but also when the slider is being dragged. |
+| **@update** | `value` | Emitted in the same scenarios as changed, but also when the slider is being dragged if `lazy` option is disabled. |
 
 ## Styling with CSS vars
 

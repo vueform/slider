@@ -100,6 +100,11 @@
         required: false,
         default: null,
       },
+      lazy: {
+        type: Boolean,
+        required: false,
+        default: true,
+      },
     },
     setup(props, context)
     {

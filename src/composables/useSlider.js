@@ -1,4 +1,4 @@
-import { ref, computed, toRefs, watch, onMounted, onUnmounted, reactive } from 'composition-api'
+import { ref, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'composition-api'
 import nouislider from 'nouislider'
 import isNullish from './../utils/isNullish'
 import arraysEqual from './../utils/arraysEqual'
@@ -8,7 +8,7 @@ export default function useSlider (props, context, dependencies)
   const {
     orientation, direction, tooltips, step,
     min, max, merge, id, disabled, options,
-    classes, format,
+    classes, format, lazy,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -107,7 +107,14 @@ export default function useSlider (props, context, dependencies)
     }
 
     slider$.value.on('set', (val) => {
-      context.emit('change', getSliderValue())
+      const sliderValue = getSliderValue()
+
+      context.emit('change', sliderValue)
+
+      /* istanbul ignore else */
+      if (lazy.value) {
+        updateValue(sliderValue)
+      }
     })
 
     slider$.value.on('update', (val) => {
@@ -124,7 +131,9 @@ export default function useSlider (props, context, dependencies)
         return
       }
 
-      updateValue(sliderValue)
+      if (!lazy.value) {
+        updateValue(sliderValue)
+      }
     })
 
     slider.value.querySelectorAll('[data-handle]').forEach((handle) => {
@@ -170,8 +179,8 @@ export default function useSlider (props, context, dependencies)
   watch(orientation, refresh, { immediate: false })
   watch(direction, refresh, { immediate: false })
   watch(tooltips, refresh, { immediate: false })
-  watch(format, refresh, { immediate: false, deep: true })
   watch(merge, refresh, { immediate: false })
+  watch(format, refresh, { immediate: false, deep: true })
   watch(options, refresh, { immediate: false, deep: true })
   watch(classes, refresh, { immediate: false, deep: true })
 
