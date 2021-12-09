@@ -91,9 +91,9 @@ Learn more: [https://vueform.com](https://vueform.com)
 
 * [Demo](#demo)
 * [Installation](#installation)
-  * [Usage with Vue 3](#usage-with-vue-3)
-  * [Usage with Vue 2](#usage-with-vue-2)
-  * [Usage with Nuxt.js](#usage-with-nuxt-js)
+  * [Using with Vue 3](#using-with-vue-3)
+  * [Using with Vue 2](#using-with-vue-2)
+  * [Using with Nuxt.js](#using-with-nuxt-js)
 * [Support](#support)
 * [Configuration](#configuration)
   * [Basic props](#basic-props)
@@ -118,7 +118,7 @@ Check out our [demo](https://jsfiddle.net/0Lp1bqyv/).
 npm install @vueform/slider
 ```
 
-### Usage with Vue 3
+### Using with Vue 3
 
 ``` vue
 <template>
