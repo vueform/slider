@@ -1,3 +1,14 @@
+## v2.0.8
+
+> `2021-12-09`
+
+### 🎉 Features
+  - Added `lazy` option that prevents updating `v-model` on dragging by default.
+  - Added `tailwind.css`.
+
+### 🐞 Bug Fixes
+  - Wrapped negative multipliers in brackets [#37](https://github.com/vueform/slider/issues/37).
+
 ## v2.0.7
 
 > `2021-11-23`
