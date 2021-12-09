@@ -1,0 +1,94 @@
+.slider-target {
+  @apply relative box-border select-none touch-none tap-highlight-transparent touch-callout-none disabled:cursor-not-allowed;
+}
+
+.slider-focused {
+}
+
+.slider-tooltip-focus {
+}
+
+.slider-tooltip-drag {
+}
+
+.slider-ltr {
+}
+
+.slider-rtl {
+}
+
+.slider-horizontal {
+  @apply h-1.5;
+}
+
+.slider-vertical {
+  @apply w-1.5 h-80;
+}
+
+.slider-txt-dir-rtl {
+  @apply slider-txt-rtl;
+}
+
+.slider-txt-dir-ltr {
+}
+
+.slider-base {
+  @apply w-full h-full relative z-1 bg-gray-300 rounded;
+}
+
+.slider-connects {
+  @apply w-full h-full relative overflow-hidden z-0 rounded;
+}
+
+.slider-connect {
+  @apply absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full bg-green-500 cursor-pointer tap:duration-300 tap:transition-transform disabled:bg-gray-400 disabled:cursor-not-allowed;
+}
+
+.slider-origin {
+  @apply absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full h:h-0 v:-top-full txt-rtl-h:left-0 txt-rtl-h:right-auto v:w-0 tap:duration-300 tap:transition-transform;
+}
+
+.slider-handle {
+  @apply absolute rounded-full bg-white border-0 shadow-slider cursor-grab focus:outline-none h:w-4 h:h-4 h:-top-1.5 h:-right-2 txt-rtl-h:-left-2 txt-rtl-h:right-auto v:w-4 v:h-4 v:-top-2 v:-right-1.25 disabled:cursor-not-allowed focus:ring focus:ring-green-500 focus:ring-opacity-30;
+}
+
+.slider-touch-area {
+  @apply h-full w-full;
+}
+
+.slider-tooltip {
+  @apply absolute block text-sm font-semibold whitespace-nowrap py-1 px-1.5 min-w-5 text-center text-white rounded border border-green-500 bg-green-500 transform h:-translate-x-1/2 h:left-1/2 v:-translate-y-1/2 v:top-1/2 disabled:bg-gray-400 disabled:border-gray-400 merge-h:translate-x-1/2 merge-h:left-auto merge-v:-translate-x-4 merge-v:top-auto tt-focus:hidden tt-focused:block tt-drag:hidden tt-dragging:block;
+}
+
+.slider-tooltip-top {
+  @apply bottom-6 h:arrow-bottom merge-h:bottom-3.5;
+}
+
+.slider-tooltip-bottom {
+  @apply top-6 h:arrow-top merge-h:top-5;
+}
+
+.slider-tooltip-left {
+  @apply right-6 v:arrow-right merge-v:right-1;
+}
+
+.slider-tooltip-right {
+  @apply left-6 v:arrow-left merge-v:left-7;
+}
+
+.slider-tooltip-hidden {
+}
+
+.slider-active {
+  @apply shadow-slider-active cursor-grabbing;
+}
+
+.slider-draggable {
+  @apply cursor-ew-resize v:cursor-ns-resize;
+}
+
+.slider-state-tap {
+}
+
+.slider-state-drag {
+}

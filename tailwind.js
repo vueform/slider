@@ -2,6 +2,9 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
   const plain = {
+    '.cursor-grab': {
+      cursor: 'grab',
+    },
     '.cursor-grabbing': {
       cursor: 'grabbing',
     },
@@ -105,9 +108,9 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
     })
   })
 
-  addVariant('h-txt-rtl', ({ modifySelectors, separator }) => {
+  addVariant('txt-rtl-h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-horizontal.slider-txt-rtl .${e(`h-txt-rtl${separator}${className}`)}`
+      return `.slider-horizontal.slider-txt-rtl .${e(`txt-rtl-h${separator}${className}`)}`
     })
   })
 
@@ -134,7 +137,7 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
 
   addVariant('tt-focused', ({ container, separator }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-focus.slider-focused .${e(`tt-focused${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`)}`
+      rule.selector = `.slider-tooltip-focus.slider-focused:not(.slider-tooltip-hidden) .${e(`tt-focused${separator}${rule.selector.slice(1)}`)}`
       rule.walkDecls(decl => {
         decl.important = true
       })
@@ -167,7 +170,7 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
       borderColor: ['disabled'],
       height: ['h', 'v'],
       width: ['h', 'v'],
-      inset: ['h', 'v', 'h-txt-rtl', 'merge-h', 'merge-v'],
+      inset: ['h', 'v', 'txt-rtl-h', 'merge-h', 'merge-v'],
       translate: ['h', 'v', 'merge-h', 'merge-v'],
       transitionProperty: ['tap'],
       transitionDuration: ['tap'],
