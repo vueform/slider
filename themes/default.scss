@@ -98,8 +98,8 @@
 .slider-horizontal .slider-handle {
   width: var(--slider-handle-width, 16px);
   height: var(--slider-handle-height, 16px);
-  top: calc(((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2 + 1px) * -1);
-  right: calc(var(--slider-handle-width, 16px) / 2 * -1);
+  top: calc(((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2 + 1px) * (-1));
+  right: calc(var(--slider-handle-width, 16px) / 2 * (-1));
 }
 
 .slider-vertical {
@@ -110,12 +110,12 @@
 .slider-vertical .slider-handle {
   width: var(--slider-handle-height, 16px);
   height: var(--slider-handle-width, 16px);
-  right: calc(((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2 + 1px) * -1);
-  bottom: calc(var(--slider-handle-width, 16px) / 2 * -1);
+  right: calc(((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2 + 1px) * (-1));
+  bottom: calc(var(--slider-handle-width, 16px) / 2 * (-1));
 }
 
 .slider-txt-dir-rtl.slider-horizontal .slider-handle {
-  left: calc(var(--slider-handle-width, 16px) / 2 * -1);
+  left: calc(var(--slider-handle-width, 16px) / 2 * (-1));
   right: auto;
 }
 
@@ -201,7 +201,7 @@
   &:before {
     content: "";
     position: absolute;
-    bottom: calc(var(--slider-tooltip-arrow-size, 5px) * -2);
+    bottom: calc(var(--slider-tooltip-arrow-size, 5px) * (-2));
     left: 50%;
     width: 0;
     height: 0;
@@ -220,7 +220,7 @@
   &:before {
     content: "";
     position: absolute;
-    top: calc(var(--slider-tooltip-arrow-size, 5px) * -2);
+    top: calc(var(--slider-tooltip-arrow-size, 5px) * (-2));
     left: 50%;
     width: 0;
     height: 0;
@@ -239,7 +239,7 @@
   &:before {
     content: "";
     position: absolute;
-    right: calc(var(--slider-tooltip-arrow-size, 5px) * -2);
+    right: calc(var(--slider-tooltip-arrow-size, 5px) * (-2));
     top: 50%;
     width: 0;
     height: 0;
@@ -258,7 +258,7 @@
   &:before {
     content: "";
     position: absolute;
-    left: calc(var(--slider-tooltip-arrow-size, 5px) * -2);
+    left: calc(var(--slider-tooltip-arrow-size, 5px) * (-2));
     top: 50%;
     width: 0;
     height: 0;
@@ -283,7 +283,7 @@
 }
 
 .slider-vertical .slider-origin > .slider-tooltip {
-  transform: translate(0, calc((var(--slider-tooltip-line-height, 1.25rem) - var(--slider-tooltip-py, 2px)) * -1 + 1px));
+  transform: translate(0, calc((var(--slider-tooltip-line-height, 1.25rem) - var(--slider-tooltip-py, 2px)) * (-1) + 1px));
   top: auto;
 }
 
