@@ -87,6 +87,27 @@ Learn more: [https://vueform.com](https://vueform.com)
 * Tailwind & utility class support
 * Based on [noUiSlider](https://github.com/leongersen/noUiSlider)
 
+## Sections
+
+* [Demo](#demo)
+* [Installation](#installation)
+  * [Usage with Vue 3](#usage-with-vue-3)
+  * [Usage with Vue 2](#usage-with-vue-2)
+  * [Usage with Nuxt.js](#usage-with-nuxt-js)
+* [Support](#support)
+* [Configuration](#configuration)
+  * [Basic props](#basic-props)
+  * [Events](#events)
+* [Styling](#styling)
+  * [Styling with CSS vars](#styling-with-css-vars)
+  * [Styling with Tailwind CSS](#styling-with-tailwind-css)
+* [Examples](#examples)
+  * [Single slider](#single-slider)
+  * [Multiple slider](#multiple-slider)
+  * [Tooltip formatting](#tooltip-formatting)
+  * [Tooltip merging](#tooltip-merging)
+* [License](#license)
+
 ## Demo 
 
 Check out our [demo](https://jsfiddle.net/0Lp1bqyv/).
@@ -97,7 +118,7 @@ Check out our [demo](https://jsfiddle.net/0Lp1bqyv/).
 npm install @vueform/slider
 ```
 
-## Usage with Vue 3
+### Usage with Vue 3
 
 ``` vue
 <template>
@@ -124,7 +145,7 @@ npm install @vueform/slider
 <style src="@vueform/slider/themes/default.css"></style>
 ```
 
-## Using with Vue 2
+### Using with Vue 2
 
 When using Vue 2 install [@vue/composition-api](https://github.com/vuejs/composition-api#npm) via npm/yarn first:
 
@@ -147,7 +168,7 @@ After that make sure to change the imported Slider module to:
 import Slider from '@vueform/slider/dist/slider.vue2.js'
 ```
 
-## Using with Nuxt.js
+### Using with Nuxt.js
 
 First you need install [@nuxtjs/composition-api](https://composition-api.nuxtjs.org/getting-started/setup):
 
@@ -177,7 +198,9 @@ For more information on using `@nuxtjs/composition-api` read [their documentatio
 
 Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](https://github.com/vueform/slider/issues).
 
-## Basic props
+## Configuration
+
+### Basic props
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -195,20 +218,22 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 | **direction** | `string` | `'ltr'` | The direction of the slider. By default value increases *left-to-right* and *top-to-bottom*, which is reversed when using `rtl`. Possible values: `ltr\|rtl` |
 | **tooltipPosition** | `string` | `null` | The position of the slider tooltips. Possible values: `null\|'top'\|'bottom'\|'left'\|'right'` depending on `orientation` prop. When `null` it equals to `orientation` default (`'top'` for `'horizontal'` and `'left'` for `'vertical'`). |
 | **options** | `object` | `{}` | Additional [options](https://refreshless.com/nouislider/slider-options/) for noUiSlider. |
-| **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`handleUpper: 'slider-handle-upper',`<br>&nbsp;&nbsp;`handleLower: 'slider-handle-lower',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`tooltipTop: 'slider-tooltip-top',`<br>&nbsp;&nbsp;`tooltipBottom: 'slider-tooltip-bottom',`<br>&nbsp;&nbsp;`tooltipLeft: 'slider-tooltip-left',`<br>&nbsp;&nbsp;`tooltipRight: 'slider-tooltip-right',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
+| **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`tooltipTop: 'slider-tooltip-top',`<br>&nbsp;&nbsp;`tooltipBottom: 'slider-tooltip-bottom',`<br>&nbsp;&nbsp;`tooltipLeft: 'slider-tooltip-left',`<br>&nbsp;&nbsp;`tooltipRight: 'slider-tooltip-right',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
 
 <a href="https://vueform.com?ref=ghb">
   <img align="center" src="https://github.com/vueform/multiselect/raw/main/assets/vueform-banner.png" alt="Vueform" title="Vueform">
 </a>
 
-## Events
+### Events
 
 | Event | Attributes | Description |
 | --- | --- | --- |
 | **@change** | `value` | Emitted when dragging the slider is finished or it's value changed by clicking, keyboard or programmatical set. |
 | **@update** | `value` | Emitted in the same scenarios as changed, but also when the slider is being dragged if `lazy` option is disabled. |
 
-## Styling with CSS vars
+## Styling
+
+### Styling with CSS vars
 
 The following CSS variables can be used to customize slider when using `default.css`:
 
@@ -282,7 +307,7 @@ Or on instance level:
 }
 ```
 
-## Styling with Tailwind CSS
+### Styling with Tailwind CSS
 
 To use the slider with Tailwind CSS you must add it as a plugin to `tailwind.config.js`:
 
@@ -299,11 +324,31 @@ module.exports = {
 
 This plugin adds certain utilities and variants which are neccessary for the slider but Tailwind does not provide by default.
 
-Once you've installed the plugin you can define utility classes for different parts of slider without having to require `default.css`. Here's a default styling for Tailwind CSS:
+After that you need to import `themes/tailwind.scss` to you main component:
+
+``` vue
+<template>
+  <div id="app">
+    <Slider ... />
+  </div>
+</template>
+
+<script>
+  // ...
+</script>
+
+<style lang="scss">
+  @import 'path/to/node_modules/@vueform/slider/themes/tailwind.scss'
+</style>
+```
+
+#### Using `:classes` prop
+
+Alternatively you can define class names directly by passing them to the `Slider` component via `classes` property. When using this approach you don't need to import `tailwind.scss`. Here's a default styling for Tailwind CSS (the same included in `tailwind.scss`):
 
 ``` vue
 <Slider v-model="value" :classes="{
-  target: 'relative box-border user-select-none touch-none tap-highlight-transparent touch-callout-none disabled:cursor-not-allowed',
+  target: 'relative box-border select-none touch-none tap-highlight-transparent touch-callout-none disabled:cursor-not-allowed',
   focused: 'slider-focused',
   tooltipFocus: 'slider-tooltip-focus',
   tooltipDrag: 'slider-tooltip-drag',
