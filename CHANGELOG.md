@@ -3,7 +3,7 @@
 > `2021-12-09`
 
 ### 🎉 Features
-  - Added `lazy` option that prevents updating `v-model` on dragging by default.
+  - Added `lazy` option that prevents updating `v-model` on dragging by default [#32](https://github.com/vueform/slider/issues/32) [#29](https://github.com/vueform/slider/issues/29) [#28](https://github.com/vueform/slider/issues/28).
   - Added `tailwind.css`.
 
 ### 🐞 Bug Fixes
