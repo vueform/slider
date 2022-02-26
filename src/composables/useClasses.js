@@ -24,6 +24,8 @@ export default function useClasses (props, context, dependencies)
     connect: 'slider-connect',
     origin: 'slider-origin',
     handle: 'slider-handle',
+    handleLower: 'slider-handle-lower',
+    handleUpper: 'slider-handle-upper',
     touchArea: 'slider-touch-area',
     tooltip: 'slider-tooltip',
     tooltipTop: 'slider-tooltip-top',
@@ -58,6 +60,10 @@ export default function useClasses (props, context, dependencies)
 
   const classList = computed(() => {
     const classList = { ...classes.value }
+
+    Object.keys(classList).forEach((className) => {
+      classList[className] = Array.isArray(classList[className]) ? classList[className].filter(c => c!==null).join(' ') : classList[className]
+    })
 
     if (showTooltip.value !== 'always') {
       classList.target += ` ${showTooltip.value === 'drag' ? classList.tooltipDrag : classList.tooltipFocus}`

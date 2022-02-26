@@ -93,7 +93,7 @@ Learn more: [https://vueform.com](https://vueform.com)
 * [Installation](#installation)
   * [Using with Vue 3](#using-with-vue-3)
   * [Using with Vue 2](#using-with-vue-2)
-  * [Using with Nuxt.js](#using-with-nuxt-js)
+  * [Using with Nuxt.js](#using-with-nuxtjs)
 * [Support](#support)
 * [Configuration](#configuration)
   * [Basic props](#basic-props)
@@ -205,7 +205,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | **id** | `string` | `slider` | The `id` attribute of slider container DOM. |
-| **lazy** | `boolean` | `true` | Whether to update `v-model` only when the slider value is set and not while dragging. If enabled you must not use inline objects as props (eg. `format`, `options`, `classes`) but outsource them to a data property. |
+| **lazy** | `boolean` | `true` | Whether to update `v-model` only when the slider value is set and not while dragging. If disabled you must not use inline objects as props (eg. `format`, `options`, `classes`) but outsource them to a data property. |
 | **disabled** | `boolean` | `false` | Whether the slider should be disabled. |
 | **min** | `number` | `0` | Minimum value of the slider. |
 | **max** | `number` | `100` | Maximum value of the slider. |
@@ -218,7 +218,7 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 | **direction** | `string` | `'ltr'` | The direction of the slider. By default value increases *left-to-right* and *top-to-bottom*, which is reversed when using `rtl`. Possible values: `ltr\|rtl` |
 | **tooltipPosition** | `string` | `null` | The position of the slider tooltips. Possible values: `null\|'top'\|'bottom'\|'left'\|'right'` depending on `orientation` prop. When `null` it equals to `orientation` default (`'top'` for `'horizontal'` and `'left'` for `'vertical'`). |
 | **options** | `object` | `{}` | Additional [options](https://refreshless.com/nouislider/slider-options/) for noUiSlider. |
-| **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`tooltipTop: 'slider-tooltip-top',`<br>&nbsp;&nbsp;`tooltipBottom: 'slider-tooltip-bottom',`<br>&nbsp;&nbsp;`tooltipLeft: 'slider-tooltip-left',`<br>&nbsp;&nbsp;`tooltipRight: 'slider-tooltip-right',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
+| **classes** | `object` | | An object of class names that gets merged with the default values. Default:<br>`{`<br>&nbsp;&nbsp;`target: 'slider-target',`<br>&nbsp;&nbsp;`ltr: 'slider-ltr',`<br>&nbsp;&nbsp;`rtl: 'slider-rtl',`<br>&nbsp;&nbsp;`horizontal: 'slider-horizontal',`<br>&nbsp;&nbsp;`vertical: 'slider-vertical',`<br>&nbsp;&nbsp;`textDirectionRtl: 'slider-txt-dir-rtl',`<br>&nbsp;&nbsp;`textDirectionLtr: 'slider-txt-dir-ltr',`<br>&nbsp;&nbsp;`base: 'slider-base',`<br>&nbsp;&nbsp;`connects: 'slider-connects',`<br>&nbsp;&nbsp;`connect: 'slider-connect',`<br>&nbsp;&nbsp;`origin: 'slider-origin',`<br>&nbsp;&nbsp;`handle: 'slider-handle',`<br>&nbsp;&nbsp;`handleLower: 'slider-handle-lower',`<br>&nbsp;&nbsp;`handleUpper: 'slider-handle-upper',`<br>&nbsp;&nbsp;`touchArea: 'slider-touch-area',`<br>&nbsp;&nbsp;`tooltip: 'slider-tooltip',`<br>&nbsp;&nbsp;`tooltipTop: 'slider-tooltip-top',`<br>&nbsp;&nbsp;`tooltipBottom: 'slider-tooltip-bottom',`<br>&nbsp;&nbsp;`tooltipLeft: 'slider-tooltip-left',`<br>&nbsp;&nbsp;`tooltipRight: 'slider-tooltip-right',`<br>&nbsp;&nbsp;`active: 'slider-active',`<br>&nbsp;&nbsp;`draggable: 'slider-draggable',`<br>&nbsp;&nbsp;`tap: 'slider-state-tap',`<br>&nbsp;&nbsp;`drag: 'slider-state-drag'`<br>`}` |
 
 <a href="https://vueform.com?ref=ghb">
   <img align="center" src="https://github.com/vueform/multiselect/raw/main/assets/vueform-banner.png" alt="Vueform" title="Vueform">
@@ -363,6 +363,8 @@ Alternatively you can define class names directly by passing them to the `Slider
   connect: 'absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full bg-green-500 cursor-pointer tap:duration-300 tap:transition-transform disabled:bg-gray-400 disabled:cursor-not-allowed',
   origin: 'slider-origin absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full h:h-0 v:-top-full txt-rtl-h:left-0 txt-rtl-h:right-auto v:w-0 tap:duration-300 tap:transition-transform',
   handle: 'absolute rounded-full bg-white border-0 shadow-slider cursor-grab focus:outline-none h:w-4 h:h-4 h:-top-1.5 h:-right-2 txt-rtl-h:-left-2 txt-rtl-h:right-auto v:w-4 v:h-4 v:-top-2 v:-right-1.25 disabled:cursor-not-allowed focus:ring focus:ring-green-500 focus:ring-opacity-30',
+  handleLower: 'slider-hande-lower',
+  handleUpper: 'slider-hande-upper',
   touchArea: 'h-full w-full',
   tooltip: 'absolute block text-sm font-semibold whitespace-nowrap py-1 px-1.5 min-w-5 text-center text-white rounded border border-green-500 bg-green-500 transform h:-translate-x-1/2 h:left-1/2 v:-translate-y-1/2 v:top-1/2 disabled:bg-gray-400 disabled:border-gray-400 merge-h:translate-x-1/2 merge-h:left-auto merge-v:-translate-x-4 merge-v:top-auto tt-focus:hidden tt-focused:block tt-drag:hidden tt-dragging:block',
   tooltipTop: 'bottom-6 h:arrow-bottom merge-h:bottom-3.5',

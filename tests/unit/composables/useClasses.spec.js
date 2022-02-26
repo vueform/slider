@@ -78,5 +78,16 @@ describe('useClasses', () => {
 
       expect(slider.vm.classList.tooltip.indexOf(slider.vm.classList.tooltipLeft) !== -1).toBe(true)
     })
+
+    it('should convert an array of classes to string', () => {
+      const slider = createSlider({
+        value: 5,
+        classes: {
+          target: ['slider-target', 'slider-target-2']
+        }
+      })
+
+      expect(slider.vm.classList.target).toBe('slider-target slider-target-2')
+    })
   })
 })

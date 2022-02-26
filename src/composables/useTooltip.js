@@ -96,13 +96,19 @@ export default function useTooltip (props, context, dependencies)
             tooltips[handleNumber].innerHTML = poolValues[poolIndex].join(separator)
             tooltips[handleNumber].style.display = 'block'
             tooltips[handleNumber].style[direction] = offset + '%'
-            if (tooltips[handleNumber].classList.contains(classList.value.tooltipHidden)) {
-              tooltips[handleNumber].classList.remove(classList.value.tooltipHidden)
-            }
+
+            classList.value.tooltipHidden.split(' ').forEach((c) => {
+              if (tooltips[handleNumber].classList.contains(c)) {
+                tooltips[handleNumber].classList.remove(c)
+              }
+            })
+
           } else {
             // Hide this tooltip
             tooltips[handleNumber].style.display = 'none'
-            tooltips[handleNumber].classList.add(classList.value.tooltipHidden)
+            classList.value.tooltipHidden.split(' ').forEach((c) => {
+              tooltips[handleNumber].classList.add(c)
+            })
           }
         }
       })
