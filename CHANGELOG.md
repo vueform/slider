@@ -1,3 +1,10 @@
+## v2.0.9
+
+> `2022-02-26`
+
+### 🎉 Features
+  - Added support for `array` classes.
+
 ## v2.0.8
 
 > `2021-12-09`
