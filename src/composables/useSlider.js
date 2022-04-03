@@ -136,6 +136,16 @@ export default function useSlider (props, context, dependencies)
       }
     })
 
+    slider$.value.on('start', (val) => {
+      const sliderValue = getSliderValue()
+      context.emit('start', sliderValue)
+    })
+
+    slider$.value.on('end', (val) => {
+      const sliderValue = getSliderValue()
+      context.emit('end', sliderValue)
+    })
+
     slider.value.querySelectorAll('[data-handle]').forEach((handle) => {
       handle.onblur = () => {
         classList.value.focused.split(' ').forEach((c) => {
