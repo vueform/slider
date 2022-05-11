@@ -426,6 +426,33 @@ describe('useSlider', () => {
       expect(slider.vm.slider$.options.margin).toStrictEqual(10)
     })
 
+    it('should refresh slider when the number of handles change', async () => {
+      const slider = createSlider({
+        value: 5,
+        options: {}
+      })
+
+      expect(slider.vm.slider$.get()).toEqual('5.00')
+
+      setProp(slider, slider.vm.$parent, 'value', [10, 20, 30])
+
+      await nextTick()
+
+      expect(slider.vm.slider$.get()).toEqual(['10.00', '20.00', '30.00'])
+
+      setProp(slider, slider.vm.$parent, 'value', [15, 25])
+
+      await nextTick()
+
+      expect(slider.vm.slider$.get()).toEqual(['15.00', '25.00'])
+
+      setProp(slider, slider.vm.$parent, 'value', 18)
+
+      await nextTick()
+
+      expect(slider.vm.slider$.get()).toEqual('18.00')
+    })
+
     it('should update slider value if v-model changes when not range and not trigger change', async () => {
       let changeMock = jest.fn()
 

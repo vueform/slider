@@ -172,6 +172,19 @@ export default function useSlider (props, context, dependencies)
 
   // ============== WATCHERS ==============
 
+  watch(value, (value, old) => {
+    if (!old) {
+      return
+    }
+
+    if (
+      (typeof old === 'object' && typeof value === 'object' && value && Object.keys(old) > Object.keys(value)) ||
+      (typeof old === 'object' && typeof value !== 'object') ||
+      !value
+    ) {
+      refresh()
+    }
+  }, { immediate: false })
   watch(isRange, refresh, { immediate: false })
   watch(min, refresh, { immediate: false })
   watch(max, refresh, { immediate: false })
@@ -190,7 +203,15 @@ export default function useSlider (props, context, dependencies)
       return
     }
 
-    if ((isRange.value && !arraysEqual(newValue, getSliderValue())) || (!isRange.value && newValue != getSliderValue())) {
+    let sliderValue = getSliderValue()
+
+    // couldn't reproduce
+    /* istanbul ignore next */
+    if (isRange.value && !Array.isArray(sliderValue)) {
+      sliderValue = [sliderValue]
+    }
+
+    if ((isRange.value && !arraysEqual(newValue, sliderValue)) || (!isRange.value && newValue != sliderValue)) {
       update(newValue, false)
     }
   }, { deep: true })
