@@ -93,7 +93,6 @@ Learn more: [https://vueform.com](https://vueform.com)
 * [Installation](#installation)
   * [Using with Vue 3](#using-with-vue-3)
   * [Using with Vue 2](#using-with-vue-2)
-  * [Using with Nuxt.js](#using-with-nuxtjs)
 * [Support](#support)
 * [Configuration](#configuration)
   * [Basic props](#basic-props)
@@ -147,52 +146,34 @@ npm install @vueform/slider
 
 ### Using with Vue 2
 
-When using Vue 2 install [@vue/composition-api](https://github.com/vuejs/composition-api#npm) via npm/yarn first:
+``` vue
+<template>
+  <div>
+    <Slider v-model="value" />
+  </div>
+</template>
 
-``` bash
-npm i @vue/composition-api --save-dev
+<script>
+  import Slider from '@vueform/slider/dist/slider.vue2.js'
+
+  export default {
+    components: {
+      Slider,
+    },
+    data() {
+      return {
+        value: 20
+      }
+    }
+  }
+</script>
+
+<style src="@vueform/slider/themes/default.css"></style>
 ```
 
-Then install the plugin for Vue:
+#### Using with < Vue 2.7
 
-``` js
-import Vue from 'vue'
-import VueCompositionAPI from '@vue/composition-api'
-
-Vue.use(VueCompositionAPI)
-```
-
-After that make sure to change the imported Slider module to:
-
-``` js
-import Slider from '@vueform/slider/dist/slider.vue2.js'
-```
-
-### Using with Nuxt.js
-
-First you need install [@nuxtjs/composition-api](https://composition-api.nuxtjs.org/getting-started/setup):
-
-``` bash
-npm i @nuxtjs/composition-api --save
-```
-
-Then you need to enable it as a module in `nuxt.config.js`:
-
-``` js
-{
-  buildModules: [
-    '@nuxtjs/composition-api/module'
-  ]
-}
-```
-
-After that make sure to change the imported module to Vue 2 version of Slider:
-
-``` js
-import Slider from '@vueform/slider/dist/slider.vue2'
-```
-
-For more information on using `@nuxtjs/composition-api` read [their documentation](https://composition-api.nuxtjs.org/).
+Switch to [`<= 2.0.10`](https://github.com/vueform/slider/tree/2.0.10) to use the Slider with Vue.js `< 2.7`.
 
 ## Support
 

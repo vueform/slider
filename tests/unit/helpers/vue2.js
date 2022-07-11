@@ -1,10 +1,8 @@
 import { mount, createLocalVue } from '@vue/test-utils'
-import CompositionApi from 'composition-api'
 import Slider from './../../../src/Slider'
 
 export const createSlider = (props = {}, options = {}) => {
   const localVue = createLocalVue()
-  localVue.use(CompositionApi)
 
   let config = {
     localVue,

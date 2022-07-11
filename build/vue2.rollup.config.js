@@ -16,7 +16,7 @@ export default [
       vue(),
       alias({
         entries: [
-          { find: 'composition-api', replacement: '@vue/composition-api' },
+          { find: 'composition-api', replacement: 'vue' },
         ]
       }),
       nodeResolve({
@@ -29,7 +29,7 @@ export default [
       }),
       terser(),
     ],
-    external: ['@vue/composition-api'],
+    external: ['vue'],
   },
   {
     input: 'src/Slider.vue',
@@ -38,7 +38,7 @@ export default [
       format: 'iife',
       name: 'VueformSlider',
       globals: {
-        'composition-api': 'VueCompositionAPI',
+        'composition-api': 'Vue',
         'vue': 'Vue',
       }
     },
