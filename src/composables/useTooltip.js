@@ -1,4 +1,4 @@
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs } from 'vue'
 import wnumb from 'wnumb'
 
 export default function useTooltip (props, context, dependencies)

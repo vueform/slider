@@ -1,4 +1,4 @@
-import { ref, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'composition-api'
+import { ref, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import nouislider from 'nouislider'
 import isNullish from './../utils/isNullish'
 import arraysEqual from './../utils/arraysEqual'

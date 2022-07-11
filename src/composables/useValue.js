@@ -1,4 +1,4 @@
-import { ref, toRefs } from 'composition-api'
+import { ref, toRefs } from 'vue'
 import isNullish from './../utils/isNullish'
 
 export default function useValue (props, context, dependencies)

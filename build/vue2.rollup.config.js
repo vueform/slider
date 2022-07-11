@@ -1,5 +1,4 @@
 import vue from 'vue-prev-rollup-plugin-vue'
-import alias from '@rollup/plugin-alias'
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
@@ -14,11 +13,6 @@ export default [
     },
     plugins: [
       vue(),
-      alias({
-        entries: [
-          { find: 'composition-api', replacement: 'vue' },
-        ]
-      }),
       nodeResolve({
         resolveOnly: ['wnumb', 'nouislider']
       }),
@@ -38,7 +32,6 @@ export default [
       format: 'iife',
       name: 'VueformSlider',
       globals: {
-        'composition-api': 'Vue',
         'vue': 'Vue',
       }
     },
@@ -53,6 +46,6 @@ export default [
       }),
       terser()
     ],
-    external: ['composition-api', 'vue'],
+    external: ['vue'],
   }
 ]
