@@ -27,9 +27,9 @@
     "test:vue3": "jest --verbose --config=jest/jest.config.vue3.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.18.9",
     "@babel/plugin-transform-modules-umd": "^7.12.1",
-    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-env": "^7.18.9",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -44,8 +44,9 @@
     "jest": "^27.3.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "node-sass": "^5.0.0",
+    "nouislider": "^15.4.0",
     "postcss": "^8.2.1",
-    "rollup": "^2.34.2",
+    "rollup": "^2.77.0",
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "tailwindcss": "^2.2.2",
@@ -59,8 +60,7 @@
     "vue-prev-jest": "npm:@vue/vue2-jest@^27.0.0-alpha.2",
     "vue-prev-rollup-plugin-vue": "npm:rollup-plugin-vue@^5.1.9",
     "vue-prev-test-utils": "npm:@vue/test-utils@1.2.2",
-    "vue-template-compiler": "^2.6.14",
-    "nouislider": "^15.4.0",
+    "vue-template-compiler": "^2.7.8",
     "wnumb": "^1.2.0"
   },
   "browserslist": [
