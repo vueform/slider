@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Slider from './../../../src/Slider'
+import Slider from './../../../src/Slider.vue'
 
 export const createSlider = (props = {}, options = {}) => {
   let config = {}

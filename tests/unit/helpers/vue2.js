@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils'
-import Slider from './../../../src/Slider'
+import Slider from './../../../src/Slider.vue'
 
 export const createSlider = (props = {}, options = {}) => {
   const localVue = createLocalVue()
