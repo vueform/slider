@@ -8,7 +8,7 @@ export default function useSlider (props, context, dependencies)
   const {
     orientation, direction, tooltips, step,
     min, max, merge, id, disabled, options,
-    classes, format, lazy,
+    classes, format, lazy, ariaLabelledby,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -17,6 +17,7 @@ export default function useSlider (props, context, dependencies)
   const initialValue = dependencies.initialValue
   const tooltipsFormat = dependencies.tooltipsFormat
   const tooltipsMerge = dependencies.tooltipsMerge
+  const tooltipFormat = dependencies.tooltipFormat
   const classList = dependencies.classList
 
   // ================ DATA ================
@@ -52,6 +53,15 @@ export default function useSlider (props, context, dependencies)
 
     if (Array.isArray(value.value)) {
       defaultOptions.connect = true
+    }
+
+    if (ariaLabelledby && ariaLabelledby.value) {
+      let handles = Array.isArray(value.value) ? value.value : [value.value]
+      defaultOptions.handleAttributes = handles.map(h => ({ 'aria-labelledby': ariaLabelledby.value, }))
+    }
+
+    if (format.value) {
+      defaultOptions.ariaFormat = tooltipFormat.value
     }
 
     return defaultOptions

@@ -116,6 +116,7 @@ export default function useTooltip (props, context, dependencies)
   }
 
   return {
+    tooltipFormat,
     tooltipsFormat,
     tooltipsMerge,
   }

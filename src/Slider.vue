@@ -105,6 +105,11 @@
         required: false,
         default: true,
       },
+      ariaLabelledby: {
+        type: String,
+        required: false,
+        default: undefined,
+      },
     },
     setup(props, context)
     {
@@ -120,6 +125,7 @@
       const slider = useSlider(props, context, {
         value: value.value,
         initialValue: value.initialValue,
+        tooltipFormat: tooltip.tooltipFormat,
         tooltipsFormat: tooltip.tooltipsFormat,
         tooltipsMerge: tooltip.tooltipsMerge,
         classList: classes.classList,
