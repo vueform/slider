@@ -118,7 +118,8 @@ describe('useSlider', () => {
         tooltips: false,
         options: {
           margin: 20
-        }
+        },
+        ariaLabelledby: 'label',
       })
 
       expect(slider.vm.slider$.target).toStrictEqual(slider.vm.slider)
@@ -130,6 +131,16 @@ describe('useSlider', () => {
       expect(slider.vm.slider$.options.tooltips).toBe(false)
       expect(slider.vm.slider$.options.margin).toBe(20)
       expect(slider.vm.slider$.options.connect).toBe('lower')
+      expect(slider.vm.slider$.options.handleAttributes).toEqual([{ 'aria-labelledby': 'label' }])
+    })
+
+    it('should init aria-labelledby with multiple handles', async () => {
+      const slider = createSlider({
+        value: [5,10],
+        ariaLabelledby: 'label',
+      })
+
+      expect(slider.vm.slider$.options.handleAttributes).toEqual([{ 'aria-labelledby': 'label' },{ 'aria-labelledby': 'label' }])
     })
 
     it('should emit change on slider set event', async () => {
