@@ -1,3 +1,11 @@
+## v2.1.3
+
+> `2022-09-23`
+
+### 🎉 Features
+  - A11y improvements.
+  - Added `ariaLabelledby` prop.
+
 ## v2.1.2
 
 > `2022-07-22`
