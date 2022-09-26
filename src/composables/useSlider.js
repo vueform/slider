@@ -59,7 +59,7 @@ export default function useSlider (props, context, dependencies)
     if ((ariaLabelledby && ariaLabelledby.value) || (aria && Object.keys(aria.value).length)) {
       let handles = Array.isArray(value.value) ? value.value : [value.value]
 
-      defaultOptions.handleAttributes = handles.map(h => (Object.assign({}, aria.value, ariaLabelledby?.value ? {
+      defaultOptions.handleAttributes = handles.map(h => (Object.assign({}, aria.value, ariaLabelledby && ariaLabelledby.value ? {
         'aria-labelledby': ariaLabelledby.value,
       }: {})))
     }
