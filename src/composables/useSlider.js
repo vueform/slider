@@ -9,6 +9,7 @@ export default function useSlider (props, context, dependencies)
     orientation, direction, tooltips, step,
     min, max, merge, id, disabled, options,
     classes, format, lazy, ariaLabelledby,
+    aria,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -55,9 +56,12 @@ export default function useSlider (props, context, dependencies)
       defaultOptions.connect = true
     }
 
-    if (ariaLabelledby && ariaLabelledby.value) {
+    if ((ariaLabelledby && ariaLabelledby.value) || (aria && Object.keys(aria.value).length)) {
       let handles = Array.isArray(value.value) ? value.value : [value.value]
-      defaultOptions.handleAttributes = handles.map(h => ({ 'aria-labelledby': ariaLabelledby.value, }))
+
+      defaultOptions.handleAttributes = handles.map(h => (Object.assign({}, aria.value, ariaLabelledby?.value ? {
+        'aria-labelledby': ariaLabelledby.value,
+      }: {})))
     }
 
     if (format.value) {

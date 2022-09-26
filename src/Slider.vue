@@ -110,6 +110,11 @@
         required: false,
         default: undefined,
       },
+      aria: {
+        required: false,
+        type: Object,
+        default: () => ({}),
+      },
     },
     setup(props, context)
     {

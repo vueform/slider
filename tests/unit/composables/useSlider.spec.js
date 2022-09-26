@@ -134,13 +134,15 @@ describe('useSlider', () => {
       expect(slider.vm.slider$.options.handleAttributes).toEqual([{ 'aria-labelledby': 'label' }])
     })
 
-    it('should init aria-labelledby with multiple handles', async () => {
+    it('should init aria attrs with multiple handles', async () => {
       const slider = createSlider({
         value: [5,10],
-        ariaLabelledby: 'label',
+        aria: {
+          'aria-invalid': false
+        }
       })
 
-      expect(slider.vm.slider$.options.handleAttributes).toEqual([{ 'aria-labelledby': 'label' },{ 'aria-labelledby': 'label' }])
+      expect(slider.vm.slider$.options.handleAttributes).toEqual([{ 'aria-invalid': false },{ 'aria-invalid': false }])
     })
 
     it('should emit change on slider set event', async () => {

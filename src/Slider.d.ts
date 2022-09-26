@@ -19,6 +19,7 @@ declare class Slider extends Vue {
   tooltipPosition?: null|'top'|'bottom'|'left'|'right';
   lazy?: boolean;
   ariaLabelledby?: string;
+  aria?: object;
 
   $emit(eventName: 'change', e: {originalEvent: Event, value: any}): this;
   $emit(eventName: 'update', e: {originalEvent: Event, value: any}): this;
