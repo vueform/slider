@@ -1,3 +1,10 @@
+## v2.1.5
+
+> `2022-09-26`
+
+### 🎉 Feature
+  - Unnecessary ES6 feature removed.
+
 ## v2.1.4
 
 > `2022-09-26`
