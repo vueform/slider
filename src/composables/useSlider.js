@@ -120,7 +120,7 @@ export default function useSlider (props, context, dependencies)
       tooltipsMerge(slider.value, merge.value, ' - ')
     }
 
-    slider$.value.on('set', (val) => {
+    slider$.value.on('set', () => {
       const sliderValue = getSliderValue()
 
       context.emit('change', sliderValue)
@@ -131,7 +131,7 @@ export default function useSlider (props, context, dependencies)
       }
     })
 
-    slider$.value.on('update', (val) => {
+    slider$.value.on('update', () => {
       if (!inited.value) {
         return
       }
@@ -150,14 +150,12 @@ export default function useSlider (props, context, dependencies)
       }
     })
 
-    slider$.value.on('start', (val) => {
-      const sliderValue = getSliderValue()
-      context.emit('start', sliderValue)
+    slider$.value.on('start', () => {
+      context.emit('start', getSliderValue())
     })
 
-    slider$.value.on('end', (val) => {
-      const sliderValue = getSliderValue()
-      context.emit('end', sliderValue)
+    slider$.value.on('end', () => {
+      context.emit('end', getSliderValue())
     })
 
     slider.value.querySelectorAll('[data-handle]').forEach((handle) => {
@@ -165,7 +163,7 @@ export default function useSlider (props, context, dependencies)
         if (!slider.value) {
           return
         }
-        
+
         classList.value.focused.split(' ').forEach((c) => {
           slider.value.classList.remove(c)
         })
