@@ -2,6 +2,7 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
   const plain = {
+    '.slider-txt-rtl': {},
     '.cursor-grab': {
       cursor: 'grab',
     },
@@ -36,53 +37,69 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
     [`.slider-vertical .${e('v:cursor-ns-resize')}`]: {
       cursor: 'ns-resize',
     },
-    [`.slider-vertical .${e('v:arrow-right')}:before`]: {
-      content: '""',
-      position: 'absolute',
-      right: '-10px',
-      top: '50%',
-      width: '0',
-      height: '0',
-      border: '5px solid transparent',
-      borderLeftColor: 'inherit',
-      transform: 'translateY(-50%)',
+  }
+
+  const h = {
+    '.arrow-bottom': {
+      '&:before': {
+        content: '""',
+        position: 'absolute',
+        bottom: '-10px',
+        left: '50%',
+        width: '0',
+        height: '0',
+        border: '5px solid transparent',
+        borderTopColor: 'inherit',
+        transform: 'translate(-50%)',
+      }
     },
-    [`.slider-vertical .${e('v:arrow-left')}:before`]: {
-      content: '""',
-      position: 'absolute',
-      left: '-10px',
-      top: '50%',
-      width: '0',
-      height: '0',
-      border: '5px solid transparent',
-      borderRightColor: 'inherit',
-      transform: 'translateY(-50%)',
+    '.arrow-top': {
+      '&:before': {
+        content: '""',
+        position: 'absolute',
+        top: '-10px',
+        left: '50%',
+        width: '0',
+        height: '0',
+        border: '5px solid transparent',
+        borderBottomColor: 'inherit',
+        transform: 'translate(-50%)',
+      }
     },
-    [`.slider-horizontal .${e('h:arrow-bottom')}:before`]: {
-      content: '""',
-      position: 'absolute',
-      bottom: '-10px',
-      left: '50%',
-      width: '0',
-      height: '0',
-      border: '5px solid transparent',
-      borderTopColor: 'inherit',
-      transform: 'translate(-50%)',
+  }
+
+  const v = {
+    '.arrow-left': {
+      '&:before': {
+        content: '""',
+        position: 'absolute',
+        left: '-10px',
+        top: '50%',
+        width: '0',
+        height: '0',
+        border: '5px solid transparent',
+        borderRightColor: 'inherit',
+        transform: 'translateY(-50%)',
+      }
     },
-    [`.slider-horizontal .${e('h:arrow-top')}:before`]: {
-      content: '""',
-      position: 'absolute',
-      top: '-10px',
-      left: '50%',
-      width: '0',
-      height: '0',
-      border: '5px solid transparent',
-      borderBottomColor: 'inherit',
-      transform: 'translate(-50%)',
+    '.arrow-right': {
+      '&:before': {
+        content: '""',
+        position: 'absolute',
+        right: '-10px',
+        top: '50%',
+        width: '0',
+        height: '0',
+        border: '5px solid transparent',
+        borderLeftColor: 'inherit',
+        transform: 'translateY(-50%)',
+      }
     },
   }
 
   addUtilities(plain)
+  addUtilities(h, ['h'])
+  addUtilities(v, ['v'])
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
@@ -120,9 +137,9 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
     })
   })
 
-  addVariant('disabled', ({ modifySelectors, separator }) => {
+  addVariant('slider-disabled', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `[disabled] .${e(`disabled${separator}${className}`)}`
+      return `[disabled] .${e(`slider-disabled${separator}${className}`)}`
     })
   })
 
