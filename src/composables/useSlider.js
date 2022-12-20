@@ -169,6 +169,7 @@ export default function useSlider (props, context, dependencies)
 
     slider.value.querySelectorAll('[data-handle]').forEach((handle) => {
       handle.onblur = () => {
+        /* istanbul ignore next */
         if (!slider.value) {
           return
         }
@@ -220,14 +221,22 @@ export default function useSlider (props, context, dependencies)
   watch(classes, refresh, { immediate: false, deep: true })
 
   watch(value, (value, old) => {
-    if (!isNullish(old)) {
+    // If old was 0, null, undefined, '', false
+    if (!old) {
       return
     }
 
     if (
+      // If both old and new has multiple handles
+      // and the number of handles decreased
       (typeof old === 'object' && typeof value === 'object' && value && Object.keys(old) > Object.keys(value)) ||
+
+      // If the old had multiple handles but
+      // if it decreased to single
       (typeof old === 'object' && typeof value !== 'object') ||
-      !value
+
+      // Or has no value at all
+      isNullish(value)
     ) {
       refresh()
     }
