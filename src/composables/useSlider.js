@@ -153,6 +153,9 @@ export default function useSlider (props, context, dependencies)
     slider.value.querySelectorAll('[data-handle]').forEach((handle) => {
       handle.onblur = () => {
         classList.value.focused.split(' ').forEach((c) => {
+          if (!slider.value) {
+            return // slider is being unloaded
+          }
           slider.value.classList.remove(c)
         })
       }
