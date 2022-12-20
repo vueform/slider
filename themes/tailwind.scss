@@ -1,5 +1,5 @@
 .slider-target {
-  @apply relative box-border select-none touch-none tap-highlight-transparent touch-callout-none disabled:cursor-not-allowed;
+  @apply relative box-border select-none touch-none tap-highlight-transparent touch-callout-none slider-disabled:cursor-not-allowed;
 }
 
 .slider-focused {
@@ -41,7 +41,7 @@
 }
 
 .slider-connect {
-  @apply absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full bg-green-500 cursor-pointer tap:duration-300 tap:transition-transform disabled:bg-gray-400 disabled:cursor-not-allowed;
+  @apply absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full bg-green-500 cursor-pointer tap:duration-300 tap:transition-transform slider-disabled:bg-gray-400 slider-disabled:cursor-not-allowed;
 }
 
 .slider-origin {
@@ -49,7 +49,7 @@
 }
 
 .slider-handle {
-  @apply absolute rounded-full bg-white border-0 shadow-slider cursor-grab focus:outline-none h:w-4 h:h-4 h:-top-1.5 h:-right-2 txt-rtl-h:-left-2 txt-rtl-h:right-auto v:w-4 v:h-4 v:-top-2 v:-right-1.25 disabled:cursor-not-allowed focus:ring focus:ring-green-500 focus:ring-opacity-30;
+  @apply absolute rounded-full bg-white border-0 shadow-slider cursor-grab focus:outline-none h:w-4 h:h-4 h:-top-1.5 h:-right-2 txt-rtl-h:-left-2 txt-rtl-h:right-auto v:w-4 v:h-4 v:-top-2 v:-right-1.25 slider-disabled:cursor-not-allowed focus:ring focus:ring-green-500 focus:ring-opacity-30;
 }
 
 .slider-touch-area {
@@ -57,7 +57,7 @@
 }
 
 .slider-tooltip {
-  @apply absolute block text-sm font-semibold whitespace-nowrap py-1 px-1.5 min-w-5 text-center text-white rounded border border-green-500 bg-green-500 transform h:-translate-x-1/2 h:left-1/2 v:-translate-y-1/2 v:top-1/2 disabled:bg-gray-400 disabled:border-gray-400 merge-h:translate-x-1/2 merge-h:left-auto merge-v:-translate-x-4 merge-v:top-auto tt-focus:hidden tt-focused:block tt-drag:hidden tt-dragging:block;
+  @apply absolute block text-sm font-semibold whitespace-nowrap py-1 px-1.5 min-w-5 text-center text-white rounded border border-green-500 bg-green-500 transform h:-translate-x-1/2 h:left-1/2 v:-translate-y-1/2 v:top-1/2 slider-disabled:bg-gray-400 slider-disabled:border-gray-400 merge-h:translate-x-1/2 merge-h:left-auto merge-v:-translate-x-4 merge-v:top-auto tt-focus:hidden tt-focused:block tt-drag:hidden tt-dragging:block;
 }
 
 .slider-tooltip-top {
