@@ -21,8 +21,13 @@ declare class Slider extends Vue {
   ariaLabelledby?: string;
   aria?: object;
 
-  $emit(eventName: 'change', e: {originalEvent: Event, value: any}): this;
+  $emit(eventName: 'start', e: {originalEvent: Event, value: any}): this;
+  $emit(eventName: 'slide', e: {originalEvent: Event, value: any}): this;
+  $emit(eventName: 'drag', e: {originalEvent: Event, value: any}): this;
   $emit(eventName: 'update', e: {originalEvent: Event, value: any}): this;
+  $emit(eventName: 'change', e: {originalEvent: Event, value: any}): this;
+  $emit(eventName: 'set', e: {originalEvent: Event, value: any}): this;
+  $emit(eventName: 'end', e: {originalEvent: Event, value: any}): this;
 }
 
 export default Slider;

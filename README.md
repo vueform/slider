@@ -213,7 +213,12 @@ Join our [Discord channel](https://discord.gg/WhX2nG6GTQ) or [open an issue](htt
 | Event | Attributes | Description |
 | --- | --- | --- |
 | **@change** | `value` | Emitted when dragging the slider is finished or it's value changed by clicking, keyboard or programmatical set. |
-| **@update** | `value` | Emitted in the same scenarios as changed, but also when the slider is being dragged if `lazy` option is disabled. |
+| **@update** | `value` | Emitted in the same scenarios as in `@change`, but also when the slider is being dragged if `lazy` option is disabled. |
+| **@set** | `value` | Emitted in the same scenarios as in `@change`, but also when the slider's `.set()` method is called. |
+| **@slide** | `value` | Emitted while the slider moves. |
+| **@drag** | `value` | Emitted the slider connect moves while dragging. |
+| **@start** | `value` | Emitted when the handle is activated and dragging started. |
+| **@end** | `value` | Emitted when the dragging ended. |
 
 ## Styling
 

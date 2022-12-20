@@ -124,6 +124,7 @@ export default function useSlider (props, context, dependencies)
       const sliderValue = getSliderValue()
 
       context.emit('change', sliderValue)
+      context.emit('set', sliderValue)
 
       /* istanbul ignore else */
       if (lazy.value) {
@@ -156,6 +157,14 @@ export default function useSlider (props, context, dependencies)
 
     slider$.value.on('end', () => {
       context.emit('end', getSliderValue())
+    })
+
+    slider$.value.on('slide', () => {
+      context.emit('slide', getSliderValue())
+    })
+
+    slider$.value.on('drag', () => {
+      context.emit('drag', getSliderValue())
     })
 
     slider.value.querySelectorAll('[data-handle]').forEach((handle) => {
