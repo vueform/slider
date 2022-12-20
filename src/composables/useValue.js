@@ -3,19 +3,19 @@ import isNullish from './../utils/isNullish'
 
 export default function useValue (props, context, dependencies)
 {
-  const { value: baseValue, modelValue } = toRefs(props)
+  const { value: baseValue, modelValue, min } = toRefs(props)
 
   // ================ DATA ================
   
   /* istanbul ignore next */
-  const value = modelValue && modelValue.value !== undefined ? modelValue : baseValue
+  let value = modelValue && modelValue.value !== undefined ? modelValue : baseValue
 
   const initialValue = ref(value.value)
 
   // ================ HOOKS ===============
 
   if (isNullish(value.value)) {
-    throw new Error('Slider v-model must be a Number or Array')
+    value = ref(min.value)
   }
 
   if (Array.isArray(value.value) && value.value.length == 0) {
