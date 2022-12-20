@@ -207,19 +207,6 @@ export default function useSlider (props, context, dependencies)
 
   // ============== WATCHERS ==============
 
-  watch(value, (value, old) => {
-    if (!old) {
-      return
-    }
-
-    if (
-      (typeof old === 'object' && typeof value === 'object' && value && Object.keys(old) > Object.keys(value)) ||
-      (typeof old === 'object' && typeof value !== 'object') ||
-      !value
-    ) {
-      refresh()
-    }
-  }, { immediate: false })
   watch(isRange, refresh, { immediate: false })
   watch(min, refresh, { immediate: false })
   watch(max, refresh, { immediate: false })
@@ -231,6 +218,20 @@ export default function useSlider (props, context, dependencies)
   watch(format, refresh, { immediate: false, deep: true })
   watch(options, refresh, { immediate: false, deep: true })
   watch(classes, refresh, { immediate: false, deep: true })
+
+  watch(value, (value, old) => {
+    if (!isNullish(old)) {
+      return
+    }
+
+    if (
+      (typeof old === 'object' && typeof value === 'object' && value && Object.keys(old) > Object.keys(value)) ||
+      (typeof old === 'object' && typeof value !== 'object') ||
+      !value
+    ) {
+      refresh()
+    }
+  }, { immediate: false })
 
   watch(value, (newValue) => {
     if (isNullish(newValue)) {
