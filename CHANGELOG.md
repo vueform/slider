@@ -1,3 +1,15 @@
+## v2.1.6
+
+> `2022-12-20`
+
+### 🎉 Feature
+  - Allow Slider instance without `v-model` #54.
+  - Added new events: `@start`, `@end`, `@drag`, `@slide`, `@set` #68.
+
+### 🐞 Bug Fixes
+  - Not updating correctly when lazy is `false` if dragged below `0` #60.
+  - Conflict with Tailwind CSS disabled prop resolved #67.
+
 ## v2.1.5
 
 > `2022-09-26`
