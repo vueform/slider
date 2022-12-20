@@ -1,21 +1,14 @@
-import { createSlider } from 'unit-test-helpers'
+import { createSlider, getValue } from 'unit-test-helpers'
 
 describe('useValue', () => {
   describe('onCreated', () => {
-    it('should throw an error if v-model is not an array or number', async () => {
-      const originalConsoleError = console.error
-      const originalConsoleWarn = console.warn
-      console.error = () => {}
-      console.warn = () => {}
+    it('should set v-model as min value is not an array or number', async () => {
+      const slider = createSlider({
+        value: null,
+        min: 5
+      })
 
-      expect(() => {
-        createSlider({
-          value: null
-        })
-      }).toThrowError()
-
-      console.error = originalConsoleError
-      console.warn = originalConsoleWarn
+      expect(slider.vm.slider$.get()).toBe('5.00')
     })
 
     it('should throw an error if v-model is an empty array', async () => {

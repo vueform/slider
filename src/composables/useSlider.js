@@ -151,18 +151,22 @@ export default function useSlider (props, context, dependencies)
       }
     })
 
+    /* istanbul ignore next */
     slider$.value.on('start', () => {
       context.emit('start', getSliderValue())
     })
 
+    /* istanbul ignore next */
     slider$.value.on('end', () => {
       context.emit('end', getSliderValue())
     })
 
+    /* istanbul ignore next */
     slider$.value.on('slide', () => {
       context.emit('slide', getSliderValue())
     })
 
+    /* istanbul ignore next */
     slider$.value.on('drag', () => {
       context.emit('drag', getSliderValue())
     })
