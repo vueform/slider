@@ -1,3 +1,10 @@
+## v2.1.7
+
+> `2023-01-13`
+
+### 🐞 Bug Fixes
+  - Removed Slider export from index.d.ts #71.
+
 ## v2.1.6
 
 > `2022-12-20`
