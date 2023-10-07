@@ -46,24 +46,36 @@
 
 ## About Vueform
 
-<a href="https://vueform.com?ref=ghb">
+<a href="https://vueform.com?ref=slider">
   <img align="center" src="https://github.com/vueform/multiselect/raw/main/assets/vueform-banner.png" alt="Vueform" title="Vueform">
 </a>
 
 <br>
 <br>
 
-Vueform is a comprehensive form builder for Vue.js that makes form development a breeze. It standardizes and handles the entire form building process, including:
-- a complete theming and templating system with **Tailwind support** (similar to @vueform libraries)
+Vueform is comprehensive **form development framework** for Vue.js. It supercharges and standardizes the entire form building process and takes care of everything from rendering to validation and processing. With our latest tool, the **Drag and Drop Form Builder**, you can allow your developers & non-tech workforce to build the most complex forms without coding.
+
+Feature highlights:
+- integrate Vueform **Drag and Drop Form Builder** into **any application**
+- save forms in **database** as a JSON
+- use your **own form elements** with **custom configuration** options
+- a complete theming and templating system with **Tailwind support**
 - 25+ form elements with **multi-file uploads**, date pickers and rich text editor
 - element **nesting** and **repeating**
 - **50+ validators** with async, dependent and custom rules
 - **conditional logic** on element & form level
 - breaking forms into **steps** with **form wizard**
-- **dynamic** form rendering with **JSON** support
 - **translating** form content and global i18n support.
 
-Learn more: [https://vueform.com](https://vueform.com)
+<a href="https://builer.vueform.com/demo?ref=slider">
+  <img align="center" src="https://github.com/vueform/multiselect/raw/main/assets/builder-banner.png" alt="Vueform Builder" title="Vueform Builder">
+</a>
+<br>
+<br>
+
+**Learn more:**
+- Builder: [https://builder.vueform.com](https://builder.vueform.com?ref=vite-starter)
+- Framework: [https://vueform.com](https://vueform.com?ref=vite-starter)
 
 ## Other libraries
 
