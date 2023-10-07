@@ -74,8 +74,8 @@ Feature highlights:
 <br>
 
 **Learn more:**
-- Builder: [https://builder.vueform.com](https://builder.vueform.com?ref=vite-starter)
-- Framework: [https://vueform.com](https://vueform.com?ref=vite-starter)
+- Builder: [https://builder.vueform.com](https://builder.vueform.com?ref=slider)
+- Framework: [https://vueform.com](https://vueform.com?ref=slider)
 
 ## Other libraries
 
