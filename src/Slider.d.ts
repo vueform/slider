@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 interface SliderProps {
   modelValue?: any;
@@ -22,7 +22,7 @@ interface SliderProps {
   aria?: object;
 }
 
-declare class Slider extends Vue {
+declare class Slider implements ReturnType<typeof defineComponent> {
   modelValue: SliderProps['modelValue'];
   value: SliderProps['value'];
   id: SliderProps['id'];
