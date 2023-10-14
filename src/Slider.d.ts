@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-declare class Slider extends Vue {
+interface SliderProps {
   modelValue?: any;
   value?: any;
   id?: string;
@@ -8,26 +8,50 @@ declare class Slider extends Vue {
   min?: number;
   max?: number;
   step?: number;
-  orientation?: 'horizontal'|'vertical';
-  direction?: 'ltr'|'rtl';
+  orientation?: 'horizontal' | 'vertical';
+  direction?: 'ltr' | 'rtl';
   tooltips?: boolean;
   options?: object;
   merge?: number;
   format?: any;
   classes?: object;
-  showTooltip?: 'always'|'focus'|'drag';
-  tooltipPosition?: null|'top'|'bottom'|'left'|'right';
+  showTooltip?: 'always' | 'focus' | 'drag';
+  tooltipPosition?: null | 'top' | 'bottom' | 'left' | 'right';
   lazy?: boolean;
   ariaLabelledby?: string;
   aria?: object;
+}
 
-  $emit(eventName: 'start', e: {originalEvent: Event, value: any}): this;
-  $emit(eventName: 'slide', e: {originalEvent: Event, value: any}): this;
-  $emit(eventName: 'drag', e: {originalEvent: Event, value: any}): this;
-  $emit(eventName: 'update', e: {originalEvent: Event, value: any}): this;
-  $emit(eventName: 'change', e: {originalEvent: Event, value: any}): this;
-  $emit(eventName: 'set', e: {originalEvent: Event, value: any}): this;
-  $emit(eventName: 'end', e: {originalEvent: Event, value: any}): this;
+declare class Slider extends Vue {
+  modelValue: SliderProps['modelValue'];
+  value: SliderProps['value'];
+  id: SliderProps['id'];
+  disabled: SliderProps['disabled'];
+  min: SliderProps['min'];
+  max: SliderProps['max'];
+  step: SliderProps['step'];
+  orientation: SliderProps['orientation'];
+  direction: SliderProps['direction'];
+  tooltips: SliderProps['tooltips'];
+  options: SliderProps['options'];
+  merge: SliderProps['merge'];
+  format: SliderProps['format'];
+  classes: SliderProps['classes'];
+  showTooltip: SliderProps['showTooltip'];
+  tooltipPosition: SliderProps['tooltipPosition'];
+  lazy: SliderProps['lazy'];
+  ariaLabelledby: SliderProps['ariaLabelledby'];
+  aria: SliderProps['aria'];
+
+  $props: SliderProps;
+
+  $emit(eventName: 'start', value: any): this | void;
+  $emit(eventName: 'slide', value: any): this | void;
+  $emit(eventName: 'drag', value: any): this | void;
+  $emit(eventName: 'update', value: any): this | void;
+  $emit(eventName: 'change', value: any): this | void;
+  $emit(eventName: 'set', value: any): this | void;
+  $emit(eventName: 'end', value: any): this | void;
 }
 
 export default Slider;
