@@ -46,7 +46,7 @@
 
 ## About Vueform
 
-<a href="https://vueform.com?ref=slider">
+<a href="https://vueform.com?cid=slider">
   <img align="center" src="https://github.com/vueform/multiselect/raw/main/assets/vueform-banner.png" alt="Vueform" title="Vueform">
 </a>
 
@@ -67,15 +67,15 @@ Feature highlights:
 - breaking forms into **steps** with **form wizard**
 - **translating** form content and global i18n support.
 
-<a href="https://builder.vueform.com/demo?ref=slider">
+<a href="https://builder.vueform.com/demo?cid=slider">
   <img align="center" src="https://github.com/vueform/multiselect/raw/main/assets/builder-banner.png" alt="Vueform Builder" title="Vueform Builder">
 </a>
 <br>
 <br>
 
 **Learn more:**
-- Builder: [https://builder.vueform.com](https://builder.vueform.com?ref=slider)
-- Framework: [https://vueform.com](https://vueform.com?ref=slider)
+- Builder: [https://builder.vueform.com](https://builder.vueform.com?cid=slider)
+- Framework: [https://vueform.com](https://vueform.com?cid=slider)
 
 ## Other libraries
 
