@@ -23,7 +23,7 @@
 
   <h1>Vue 3 Slider</h1>
   
-  <a href="https://vueform.com?ref=github" target="_blank">
+  <a href="https://vueform.com?cid=toggle" target="_blank">
     <br>
     <img align="center" src="https://github.com/vueform/slider/raw/main/assets/logo.svg" width="110">
     <br>
@@ -41,7 +41,7 @@
 ## Sponsors
 
 <div align="center"><br>
-  <a href="https://vueform.com?ref=github"><img src="https://github.com/vueform/slider/raw/main/assets/logo-horizontal.svg" width="200"></a>
+  <a href="https://vueform.com?cid=toggle"><img src="https://github.com/vueform/slider/raw/main/assets/logo-horizontal.svg" width="200"></a>
 </div>
 
 ## About Vueform
