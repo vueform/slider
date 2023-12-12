@@ -10,6 +10,20 @@
   "module": "./dist/slider.js",
   "unpkg": "./dist/slider.global.js",
   "style": "./themes/default.css",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./dist/slider.js",
+      "require": "./dist/slider.js"
+    },
+    "./src/*": "./src/*",
+    "./dist/*": "./dist/*",
+    "./themes/*": "./themes/*",
+    "./tailwind": "./tailwind.js",
+    "./tailwind.js": "./tailwind.js",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vueform/slider.git"
