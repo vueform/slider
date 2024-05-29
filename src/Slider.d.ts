@@ -1,8 +1,14 @@
 import { defineComponent } from 'vue';
 
+interface typePropFormat {
+  prefix?: string,
+  suffix?: string,
+  decimals?: string,
+  thousand?: string,
+}
 interface SliderProps {
-  modelValue?: any;
-  value?: any;
+  modelValue?: number | number[];
+  value?: number | number[];
   id?: string;
   disabled?: boolean;
   min?: number;
@@ -11,15 +17,15 @@ interface SliderProps {
   orientation?: 'horizontal' | 'vertical';
   direction?: 'ltr' | 'rtl';
   tooltips?: boolean;
-  options?: object;
+  options?: Record<string, any>;
   merge?: number;
-  format?: any;
-  classes?: object;
+  format?: typePropFormat | ((v:number) => string | number);
+  classes?: Record<string, string>;
   showTooltip?: 'always' | 'focus' | 'drag';
   tooltipPosition?: null | 'top' | 'bottom' | 'left' | 'right';
   lazy?: boolean;
-  ariaLabelledby?: string;
-  aria?: object;
+  ariaLabelledby?: string | string[];
+  aria?: Record<string, string> | Record<string, string>[];
 }
 
 declare class Slider implements ReturnType<typeof defineComponent> {

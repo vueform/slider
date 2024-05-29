@@ -56,12 +56,38 @@ export default function useSlider (props, context, dependencies)
       defaultOptions.connect = true
     }
 
-    if ((ariaLabelledby && ariaLabelledby.value) || (aria && Object.keys(aria.value).length)) {
-      let handles = Array.isArray(value.value) ? value.value : [value.value]
+    // Check if aria / ariaLabelledby is provided
+    if ((ariaLabelledby && ariaLabelledby.value) || (aria && aria.value)) {
+      const handles = Array.isArray(value.value) ? value.value : [value.value];
 
-      defaultOptions.handleAttributes = handles.map(h => (Object.assign({}, aria.value, ariaLabelledby && ariaLabelledby.value ? {
-        'aria-labelledby': ariaLabelledby.value,
-      }: {})))
+      // For each handle
+      defaultOptions.handleAttributes = handles.map((h, i) => {
+        const output = {};
+
+        // if aria provided
+        if (aria.value) {
+          if (Array.isArray(aria.value)) {
+            // If array is provided, assign the value respectively
+            Object.assign(output, aria.value[i]);
+          } else {
+            // Else assign the object
+            Object.assign(output, aria.value);
+          }
+        }
+        
+        // if ariaLabelledby provided
+        if (ariaLabelledby.value) {
+          if (typeof ariaLabelledby.value === 'string') {
+            // if string is provided, assign the value in object format
+            Object.assign(output, { 'aria-labelledby': ariaLabelledby.value });
+          } else {
+            // Else if string array is provided, assign the value respectively
+            Object.assign(output, { 'aria-labelledby': ariaLabelledby.value[i] });
+          }
+        }
+
+        return output;
+      });
     }
 
     if (format.value) {

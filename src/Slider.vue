@@ -107,13 +107,13 @@
         default: true,
       },
       ariaLabelledby: {
-        type: String,
+        type: [String, Array],
         required: false,
         default: undefined,
       },
       aria: {
         required: false,
-        type: Object,
+        type: [Object, Array],
         default: () => ({}),
       },
     },
