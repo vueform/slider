@@ -1,5 +1,6 @@
 import { computed, toRefs } from 'vue'
 import wnumb from 'wnumb'
+import toRef from '../utils/toRef'
 
 export default function useTooltip (props, context, dependencies)
 {
@@ -25,7 +26,7 @@ export default function useTooltip (props, context, dependencies)
     return wnumb({...format.value})
   })
 
-  const tooltipsFormat = computed(() => {
+  const tooltipsFormat = toRef(() => {
     return Array.isArray(value.value) ? value.value.map(v => tooltipFormat.value) : tooltipFormat.value
   })
 

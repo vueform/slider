@@ -1,4 +1,5 @@
-import { computed, ref, toRefs } from 'vue'
+import { toRefs } from 'vue'
+import toRef from '../utils/toRef'
 
 export default function useClasses (props, context, dependencies)
 {
@@ -8,7 +9,7 @@ export default function useClasses (props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  const classes = computed(() => ({
+  const classes = toRef(() => ({
     target: 'slider-target',
     focused: 'slider-focused',
     tooltipFocus: 'slider-tooltip-focus',
@@ -58,7 +59,7 @@ export default function useClasses (props, context, dependencies)
     ...classes_.value,
   }))
 
-  const classList = computed(() => {
+  const classList = toRef(() => {
     const classList = { ...classes.value }
 
     Object.keys(classList).forEach((className) => {

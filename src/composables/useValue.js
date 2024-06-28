@@ -8,7 +8,7 @@ export default function useValue (props, context, dependencies)
   // ================ DATA ================
   
   /* istanbul ignore next */
-  let value = modelValue && modelValue.value !== undefined ? modelValue : baseValue
+  let value = modelValue.value !== undefined ? modelValue : baseValue
 
   const initialValue = ref(value.value)
 

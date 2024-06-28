@@ -8,22 +8,6 @@
   import useTooltip from './composables/useTooltip'
   import useSlider from './composables/useSlider'
 
-  /* istanbul ignore next */
-  const valueProps = {
-    value: {
-      validator: function(p) {
-        return p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false
-      },
-      required: false,
-    },
-    modelValue: {
-      validator: function(p) {
-        return p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false
-      },
-      required: false,
-    },
-  }
-
   export default {
     name: 'Slider',
     emits: [
@@ -31,7 +15,19 @@
       'start', 'slide', 'drag', 'update', 'change', 'set', 'end',
     ],
     props: {
-      ...valueProps,
+      value: {
+        validator: function(p) {
+          return p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false
+        },
+        required: false,
+      },
+      modelValue: {
+        validator: function(p) {
+          return p => typeof p === 'number' || p instanceof Array || p === null || p === undefined || p === false
+        },
+        required: false,
+      },
+
       id: {
         type: [String, Number],
         required: false,

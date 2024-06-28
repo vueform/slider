@@ -1,7 +1,8 @@
-import { ref, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, shallowRef, toRefs, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import nouislider from 'nouislider'
 import isNullish from './../utils/isNullish'
 import arraysEqual from './../utils/arraysEqual'
+import toRef from '../utils/toRef'
 
 export default function useSlider (props, context, dependencies)
 {
@@ -23,9 +24,9 @@ export default function useSlider (props, context, dependencies)
 
   // ================ DATA ================
 
-  const slider = ref(null)
+  const slider = shallowRef(null)
 
-  const slider$ = ref(null)
+  const slider$ = shallowRef(null)
 
   // no export
   const inited = ref(false)
@@ -33,7 +34,7 @@ export default function useSlider (props, context, dependencies)
   // ============== COMPUTED ==============
 
   // no export
-  const defaultOptions = computed(() => {
+  const defaultOptions = toRef(() => {
     let defaultOptions = {
       cssPrefix: '',
       cssClasses: classList.value,
@@ -56,10 +57,10 @@ export default function useSlider (props, context, dependencies)
       defaultOptions.connect = true
     }
 
-    if ((ariaLabelledby && ariaLabelledby.value) || (aria && Object.keys(aria.value).length)) {
+    if ((ariaLabelledby.value) || (aria && Object.keys(aria.value).length)) {
       let handles = Array.isArray(value.value) ? value.value : [value.value]
 
-      defaultOptions.handleAttributes = handles.map(h => (Object.assign({}, aria.value, ariaLabelledby && ariaLabelledby.value ? {
+      defaultOptions.handleAttributes = handles.map(h => (Object.assign({}, aria.value, ariaLabelledby.value ? {
         'aria-labelledby': ariaLabelledby.value,
       }: {})))
     }
@@ -71,9 +72,9 @@ export default function useSlider (props, context, dependencies)
     return defaultOptions
   })
 
-  const sliderProps = computed(() => {
+  const sliderProps = toRef(() => {
     let sliderProps = {
-      id: id && id.value ? id.value : undefined,
+      id: id.value ? id.value : undefined,
     }
 
     if (disabled.value) {
@@ -83,7 +84,7 @@ export default function useSlider (props, context, dependencies)
     return sliderProps
   })
 
-  const isRange = computed(() => {
+  const isRange = toRef(() => {
     return Array.isArray(value.value)
   })
 
@@ -194,6 +195,10 @@ export default function useSlider (props, context, dependencies)
   }
 
   const destroy = () => {
+    if (!slider$.value) {
+      return;
+    }
+
     slider$.value.off()
     slider$.value.destroy()
     slider$.value = null
@@ -212,17 +217,8 @@ export default function useSlider (props, context, dependencies)
 
   // ============== WATCHERS ==============
 
-  watch(isRange, refresh, { immediate: false })
-  watch(min, refresh, { immediate: false })
-  watch(max, refresh, { immediate: false })
-  watch(step, refresh, { immediate: false })
-  watch(orientation, refresh, { immediate: false })
-  watch(direction, refresh, { immediate: false })
-  watch(tooltips, refresh, { immediate: false })
-  watch(merge, refresh, { immediate: false })
-  watch(format, refresh, { immediate: false, deep: true })
-  watch(options, refresh, { immediate: false, deep: true })
-  watch(classes, refresh, { immediate: false, deep: true })
+  watch([isRange, min, max, step, orientation, direction, tooltips, merge], refresh, { immediate: false })
+  watch([format, options, classes], refresh, { immediate: false, deep: true })
 
   watch(value, (value, old) => {
     // If old was 0, null, undefined, '', false
@@ -244,7 +240,7 @@ export default function useSlider (props, context, dependencies)
     ) {
       refresh()
     }
-  }, { immediate: false })
+  }, { immediate: false })
 
   watch(value, (newValue) => {
     if (isNullish(newValue)) {

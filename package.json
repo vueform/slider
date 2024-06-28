@@ -58,7 +58,7 @@
     "jest": "^27.3.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "node-sass": "^7.0.0",
-    "nouislider": "^15.4.0",
+    "nouislider": "^15.7.2",
     "postcss": "^8.2.1",
     "rollup": "^2.77.0",
     "rollup-plugin-postcss": "^4.0.0",
